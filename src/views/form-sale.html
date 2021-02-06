@@ -32,12 +32,12 @@
             </a>
             <h1 class="title">Encoder votre <span>facture de vente</span></h1>
 
-            <div>
-                <ul class="form-navigation">
-                    <li class="form-navigation__item">1. Données de contact</li>
-                    <li class="form-navigation__item">2. Services</li>
+            <div class="form-tabs">
+                <ul class="form-tabs__list">
+                    <li class="form-tabs__item js-form-tabs is-active" data-index="0">Données de contact</li>
+                    <li class="form-tabs__item js-form-tabs" data-index="1">Services</li>
                 </ul>
-                <p>* champs requis</p>
+                <p class="form-tabs__required">* champs requis</p>
             </div>
 
             <form class="form-sale__form">
@@ -51,6 +51,16 @@
                         <div class="form-field">
                             <label class="form-label" for="forename">Prénom*</label>
                             <input class="form-input" type="text" id="forename" placeholder="ex. Benjamin">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="company">Société</label>
+                            <input class="form-input" type="text" id="company" placeholder="ex. Onie">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="tva">Numéro de tva</label>
+                            <input class="form-input" type="text" id="tva" placeholder="ex. 0123.456.789.">
                         </div>
                     </div>
                     <div class="form-row">
@@ -77,10 +87,6 @@
                         <div class="form-field">
                             <label class="form-label" for="land">Pays*</label>
                             <input class="form-input" type="text" id="land" placeholder="Pays" value="Belgique">
-                        </div>
-                        <div class="form-field">
-                            <label class="form-label" for="tva">Numéro de tva*</label>
-                            <input class="form-input" type="text" id="tva" placeholder="ex. 0123.456.789.">
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 export default class formValidation {
 
     constructor() {
-        this.error                  = false
-        this.$submit                = document.querySelector(".js-form-submit")
-        this.$submitLabel           = document.querySelector(".js-form-submit-label")
-        this.$groupForm             = document.querySelectorAll(".form-group")
+        this.error          = false
+        this.$submit        = document.querySelector(".js-form-submit")
+        this.$submitLabel   = document.querySelector(".js-form-submit-label")
+        this.$groupForm     = document.querySelectorAll(".form-group")
+        this.$tabs          = document.querySelectorAll(".js-form-tabs")
 
         this.init()
     }
@@ -22,6 +23,15 @@ export default class formValidation {
                 //step 1
                 this.formValidationStep1()
                 if(!this.error){
+
+                    // Update tabs form
+                    this.$tabs.forEach( item => {
+                        item.classList.remove("is-active")
+
+                        if(indexButton + 1 === this.getIndex(item)){
+                            item.classList.add("is-active")
+                        }
+                    })
 
                     // Update index button
                     this.$submit.setAttribute("data-index", "1")
@@ -80,7 +90,6 @@ export default class formValidation {
         this.checkZipcode()
         this.checkCity()
         this.checkLand()
-        this.checkTva()
 
     }
 
@@ -143,15 +152,6 @@ export default class formValidation {
         const value = this.getValue(item)
 
         if(!value && value === ""){
-            this.setError(item)
-        }
-    }
-
-    checkTva(){
-        const item = "tva"
-        const value = this.getValue(item)
-
-        if(!value && value === "" && parseInt(value) !== NaN){
             this.setError(item)
         }
     }

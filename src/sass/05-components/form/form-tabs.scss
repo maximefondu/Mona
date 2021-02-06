@@ -1,0 +1,51 @@
+.form-tabs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5rem 0 4rem;
+
+    &__list{
+        display: flex;
+    }
+
+    &__item{
+        display: flex;
+
+        @include not-last-child{
+            margin-right: 3rem;
+        }
+
+        @include before{
+            content: '1';
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            line-height: 1;
+            font-weight: 700;
+            background-color: $c-grey-medium;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            color: white;
+        }
+
+        &:last-child{
+            &:before{
+                content: '2';
+            }
+        }
+
+        &.is-active{
+
+            &:before{
+                background-color: $c-primary;
+            }
+        }
+    }
+
+    &__required{
+        font-size: 1.4rem;
+    }
+}
