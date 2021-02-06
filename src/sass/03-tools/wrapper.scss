@@ -1,0 +1,37 @@
+/*
+ * Wrap
+ * Usage:
+   @include wrap(760, true);
+ */
+
+@mixin wrap($wrapper-size: $container-wrap, $paddings: true){
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @if($paddings){
+
+    max-width: (($wrapper-size + ($default-gutter * 2)) / 10) * 1rem;
+    padding-left: $default-gutter * .1rem;
+    padding-right: $default-gutter * .1rem;
+
+    @include bp-max-width($bp-mobile) {
+      padding-left: $default-gutter-mobile * .1rem;
+      padding-right: $default-gutter-mobile * .1rem;
+    }
+
+  }@else{
+
+    max-width: ($wrapper-size / 10) * 1rem;
+
+  }
+
+}
+
+.wrap{
+  @include wrap($container-wrap, false);
+}
+
+.wrap-paddings{
+  @include wrap;
+}

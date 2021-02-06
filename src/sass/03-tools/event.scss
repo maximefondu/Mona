@@ -1,0 +1,17 @@
+/**
+ * Event
+ * Usage:
+ * @include event {
+ *   color: rebeccapurple;
+ * }
+ */
+
+@mixin event() {
+  outline: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}

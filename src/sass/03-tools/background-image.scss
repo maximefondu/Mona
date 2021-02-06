@@ -1,0 +1,12 @@
+/**
+ * Background image
+ * Usage:
+ * @include background-image("file.jpg", cover, top);
+ */
+
+@mixin background-image($file, $size:cover, $position: center) {
+    background-image: url($p_img + $file);
+    background-size: $size;
+    background-position: $position;
+    background-repeat: no-repeat;
+}

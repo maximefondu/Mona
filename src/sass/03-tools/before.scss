@@ -1,0 +1,16 @@
+/**
+ * Before
+ * Usage:
+   @include before(){
+      @content
+   };
+ */
+
+@mixin before(){
+
+    &:before{
+        content: '';
+        @content
+    }
+
+}

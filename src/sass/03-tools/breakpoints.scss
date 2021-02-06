@@ -1,0 +1,29 @@
+/**
+ * Breakpoints mixin
+ * Usage:
+   @include bp-max-width(desktop, all);
+ */
+
+@mixin bp-max-width($w, $context: all) {
+    @media #{$context} and (max-width: $w) {
+        @content;
+    }
+}
+
+@mixin bp-min-width($w, $context: all) {
+    @media #{$context} and (min-width: $w) {
+        @content;
+    }
+}
+
+@mixin bp-max-height($h, $context: all) {
+    @media #{$context} and (max-height: $h) {
+        @content;
+    }
+}
+
+@mixin bp-min-height($h, $context: all) {
+    @media #{$context} and (min-height: $h) {
+        @content;
+    }
+}

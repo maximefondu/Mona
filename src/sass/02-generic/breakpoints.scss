@@ -1,0 +1,19 @@
+/**
+ * Breakpoints
+ */
+
+$bp-mobile: 480px;
+$bp-phablet: 640px;
+$bp-tablet: 768px;
+$bp-desktop: 1020px;
+$bp-wide: 1380px;
+$bp-hd: 1920px;
+
+$breakpoints: (
+    mobile:  $bp-mobile,
+    phablet: $bp-phablet,
+    tablet:  $bp-tablet,
+    desktop: $bp-desktop,
+    wide:    $bp-wide,
+    hd:      $bp-hd
+);

@@ -1,0 +1,82 @@
+/**
+ * Spacings
+ */
+
+$spacings:0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 180, 190, 200, 210, 220, 230, 240, 250;
+
+@mixin spacings-classes-sub($class_suffix: '', $val: 0) {
+
+    .u-pad-t#{$class_suffix} {
+        padding-top: $val;
+    }
+
+    .u-pad-b#{$class_suffix} {
+        padding-bottom: $val;
+    }
+
+    .u-mar-t#{$class_suffix} {
+        margin-top: $val;
+    }
+
+    .u-mar-b#{$class_suffix} {
+        margin-bottom: $val;
+    }
+
+}
+
+@mixin spacings-classes($spacing, $prefix: "", $with-bp: true) {
+
+    $val: $spacing * 0.1rem;
+    $prefix_val: "-";
+
+    @if ($prefix != "") {
+        $prefix_val: "-" + $prefix + "-";
+    }
+
+    $class_suffix: $prefix_val + $spacing;
+
+    @include spacings-classes-sub($class_suffix, $val);
+
+    @if ($with-bp) {
+
+        @media all and (max-width: desktop) {
+
+            @include spacings-classes-sub($class_suffix, $val * .8);
+
+        }
+
+
+        @media all and (max-width: mobile) {
+
+            @include spacings-classes-sub($class_suffix, $val * .5);
+
+        }
+
+    }
+
+}
+
+/* normal --------------------------------------------------- */
+@each $spacing in $spacings {
+
+    @include spacings-classes($spacing);
+
+}
+
+/* breakpoints --------------------------------------------------- */
+@each $spacing in $spacings {
+
+    @each $breakpoint in $breakpoints {
+
+        $bp-name: nth($breakpoint, 1);
+        $bp-width: nth($breakpoint, 2);
+
+        @media all and (max-width: $bp-width) {
+
+            @include spacings-classes($spacing, $bp-name, false);
+
+        }
+
+    }
+
+}

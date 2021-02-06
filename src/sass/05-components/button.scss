@@ -1,0 +1,10 @@
+.button{
+    background-color: $c-primary;
+    border: none;
+    border-radius: 5px;
+    padding: 1.4rem 2.4rem;
+
+    &__label{
+        color: white;
+    }
+}

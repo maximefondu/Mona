@@ -1,0 +1,26 @@
+/**
+ * Body
+ */
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $f-main;
+  font-size: $f-size-main;
+  line-height: $line-height-main;
+  font-weight: 400;
+  color: $c-main;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+
+  &.has-no-scroll{
+    overflow: hidden;
+  }
+}
