@@ -9,21 +9,21 @@
     @include transition(400ms, all, ease-in-out);
 
     @include before{
-        width: 100%;
-        height: 100%;
-        padding: 100%;
+        width: 0;
+        height: 0;
+        padding: 60%;
         background-color: darken($c-primary, 8%);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) scale(0);
         border-radius: 50%;
-        @include transition(1000ms, all, cubic-bezier(0.83, 0, 0.17, 1));
+        @include transition(800ms, all, cubic-bezier(0.25, 1, 0.5, 1));
     }
 
     @include event{
         transform: scale(1.03);
-        box-shadow: 0 0 26px rgba(black, .2);
+        box-shadow: 0 0 26px rgba(black, .25);
         &:before{
             transform: translate(-50%, -50%) scale(1);
         }
@@ -35,5 +35,56 @@
         font-size: 1.4rem;
         font-weight: 700;
         color: white;
+    }
+}
+
+
+/* Border */
+.button._border{
+    background-color: transparent;
+    border: 1px solid $c-primary;
+
+    @include event{
+        border-color: darken($c-primary, 8%);
+
+        &:before{
+            transition-duration: 1000ms;
+        }
+
+        .button__label{
+            color: white;
+        }
+    }
+
+    .button__label{
+        color: $c-primary;
+    }
+
+    &.is-disable{
+        border-color: $c-grey;
+
+        &:before{
+            background-color: $c-grey;
+        }
+
+        @include event{
+            border-color: darken($c-grey, 8%);
+
+            .button__label{
+                color: white;
+            }
+        }
+
+        .button__label{
+            color: $c-grey;
+        }
+    }
+
+    &.is-completed{
+        background-color: $c-primary;
+
+        .button__label{
+            color: white;
+        }
     }
 }
