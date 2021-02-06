@@ -1,0 +1,36 @@
+.back{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.6rem;
+
+    &__icon{
+        width: 7px;
+        fill: $c-main;
+        margin-right: 1rem;
+        transition: 200ms ease-in-out opacity, 400ms ease-in-out transform;
+    }
+
+    &__label{
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 1;
+        @include transition(500ms);
+    }
+
+    @include event{
+
+        .back{
+
+            &__icon{
+                transform: translateX(-1rem);
+                opacity: 0;
+            }
+
+            &__label{
+                color: $c-grey;
+                transform: translateX(-1.4rem);
+            }
+        }
+    }
+}
