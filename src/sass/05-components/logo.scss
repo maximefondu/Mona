@@ -1,0 +1,9 @@
+.logo{
+    width: 10rem;
+    display: flex;
+    @include transition;
+
+    @include event{
+        transform: scale(1.03);
+    }
+}
