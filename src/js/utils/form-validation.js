@@ -4,6 +4,7 @@ export default class formValidation {
         this.error          = false
         this.$submit        = document.querySelector(".js-form-submit")
         this.$submitLabel   = document.querySelector(".js-form-submit-label")
+        this.$back          = document.querySelector(".js-form-back")
         this.$groupForm     = document.querySelectorAll(".form-group")
         this.$tabs          = document.querySelectorAll(".js-form-tabs")
 
@@ -12,6 +13,37 @@ export default class formValidation {
 
     init(){
 
+        /* Back */
+        this.$back.addEventListener('click', ()=>{
+            const indexButton = this.getIndex(this.$back)
+
+            // Update index button
+            this.$submit.setAttribute("data-index", "0")
+
+            // Update label button
+            this.$submitLabel.textContent="Suivant"
+
+            // Display prev step
+            this.$groupForm.forEach( group =>{
+                const index = this.getIndex(group)
+                group.classList.remove("is-active")
+
+                if(indexButton === index){
+                    group.classList.add("is-active")
+                }
+            })
+
+            // Update tabs form
+            this.$tabs.forEach( item => {
+                item.classList.remove("is-active")
+
+                if(indexButton === this.getIndex(item)){
+                    item.classList.add("is-active")
+                }
+            })
+        })
+
+        /* Next step */
         this.$submit.addEventListener("click", ()=>{
             this.$inputs                = document.querySelectorAll("input")
             this.$textarea              = document.querySelectorAll("textarea")
@@ -21,8 +53,11 @@ export default class formValidation {
             if(!indexButton){
 
                 //step 1
-                this.formValidationStep1()
+                // this.formValidationStep1()
                 if(!this.error){
+
+                    // Disable back button
+                    this.$back.classList.add("is-active")
 
                     // Update tabs form
                     this.$tabs.forEach( item => {

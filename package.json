@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "parcel src/views/index.html",
+    "build": "parcel build src/views/index.html --public-url .",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
