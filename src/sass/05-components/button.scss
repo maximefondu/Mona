@@ -7,6 +7,7 @@
     position: relative;
     overflow: hidden;
     @include transition(400ms, all, ease-in-out);
+    outline: none;
 
     @include before{
         width: 0;
@@ -21,7 +22,7 @@
         @include transition(800ms, all, cubic-bezier(0.25, 1, 0.5, 1));
     }
 
-    @include event{
+    &:hover{
         transform: scale(1.03);
         box-shadow: 0 0 26px rgba(black, .25);
         &:before{
@@ -44,7 +45,7 @@
     background-color: transparent;
     border: 1px solid $c-primary;
 
-    @include event{
+    &:hover{
         border-color: darken($c-primary, 8%);
 
         &:before{
@@ -67,7 +68,7 @@
             background-color: $c-grey;
         }
 
-        @include event{
+        &:hover{
             border-color: darken($c-grey, 8%);
 
             .button__label{

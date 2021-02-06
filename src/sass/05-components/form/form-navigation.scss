@@ -1,6 +1,6 @@
 .form-navigation{
     display: flex;
-    margin: 5rem 0;
+    margin: 5rem 0 3rem;
 
     &__item{
         @include not-last-child{

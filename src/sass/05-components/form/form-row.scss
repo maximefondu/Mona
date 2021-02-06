@@ -1,8 +1,15 @@
 .form-row{
+    position: relative;
     display: flex;
     margin: 0 -2.5rem;
 
     @include not-last-child{
         margin-bottom: 4rem;
+    }
+
+    &._without-label{
+        @include not-last-child{
+            margin-bottom: 2rem;
+        }
     }
 }

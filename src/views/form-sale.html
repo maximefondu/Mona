@@ -18,60 +18,86 @@
 
             <ul class="form-navigation">
                 <li class="form-navigation__item">
-                    <button class="button _border">
+                    <button class="js-form-naviation-button button _border" data-index="0">
                         <span class="button__label">1. Données de contact</span>
                     </button>
                 </li>
                 <li class="form-navigation__item">
-                    <button class="button _border is-disable">
-                        <span class="button__label">2. Facture</span>
+                    <button class="js-form-naviation-button button _border is-disable" data-index="1">
+                        <span class="button__label">2. Services</span>
                     </button>
                 </li>
             </ul>
 
             <form class="form-sale__form">
 
-                <div class="form-group is-active">
+                <p class="form-required">* champs requis</p>
+
+                <div data-index="0" class="form-group is-active js-form-section">
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="name">Nom</label>
+                            <label class="form-label" for="name">Nom*</label>
                             <input class="form-input" type="text" id="name" placeholder="ex. Liss">
                         </div>
                         <div class="form-field">
-                            <label class="form-label" for="forename">Prénom</label>
+                            <label class="form-label" for="forename">Prénom*</label>
                             <input class="form-input" type="text" id="forename" placeholder="ex. Benjamin">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="address">Address</label>
+                            <label class="form-label" for="address">Address*</label>
                             <input class="form-input" type="text" id="address" placeholder="ex. Rue des petits">
                         </div>
                         <div class="form-field">
-                            <label class="form-label" for="number">Numéro de rue</label>
+                            <label class="form-label" for="number">Numéro de rue*</label>
                             <input class="form-input" type="text" id="number" placeholder="ex. 23">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="zipcode">Code postal</label>
+                            <label class="form-label" for="zipcode">Code postal*</label>
                             <input class="form-input" type="text" id="zipcode" placeholder="ex. 5000">
                         </div>
                         <div class="form-field">
-                            <label class="form-label" for="city">Ville</label>
+                            <label class="form-label" for="city">Ville*</label>
                             <input class="form-input" type="text" id="city" placeholder="ex. Namur">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="land">Pays</label>
+                            <label class="form-label" for="land">Pays*</label>
                             <input class="form-input" type="text" id="land" placeholder="Pays" value="Belgique">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="tva">Numéro de tva*</label>
+                            <input class="form-input" type="text" id="tva" placeholder="ex. 0123.456.789.">
                         </div>
                     </div>
                 </div>
 
+                <div data-index="1" class="form-group js-form-section">
+                    <div class="js-form-services-container">
+                        <div class="form-row _without-label">
+                            <div class="form-field">
+                                <label class="form-label">Description du service</label>
+                                <textarea class="form-textarea" placeholder="Ex. Pomme"></textarea>
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label">Nombre d'heure(s)</label>
+                                <input class="form-input" type="number" placeholder="ex. 2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="button _border u-mar-t-30 js-form-services-add" type="button">
+                        <span class="button__label">Ajouter un service</span>
+                    </button>
+
+                </div>
+
                 <button type="button" class="button">
-                    <span class="button__label">Suivant</span>
+                    <span class="js-form-submit-label button__label">Suivant</span>
                 </button>
 
             </form>
