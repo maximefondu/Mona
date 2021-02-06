@@ -3,4 +3,14 @@
     &__main{
         @include wrap;
     }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+
+        .button{
+            align-self: flex-end;
+        }
+    }
 }

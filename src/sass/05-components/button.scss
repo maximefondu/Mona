@@ -2,9 +2,38 @@
     background-color: $c-primary;
     border: none;
     border-radius: 5px;
-    padding: 1.4rem 2.4rem;
+    padding: 1.4rem 3.4rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    @include transition(400ms, all, ease-in-out);
+
+    @include before{
+        width: 100%;
+        height: 100%;
+        padding: 100%;
+        background-color: darken($c-primary, 8%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        @include transition(1000ms, all, cubic-bezier(0.83, 0, 0.17, 1));
+    }
+
+    @include event{
+        transform: scale(1.03);
+        box-shadow: 0 0 26px rgba(black, .2);
+        &:before{
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
 
     &__label{
+        position: relative;
+        z-index: 10;
+        font-size: 1.4rem;
+        font-weight: 700;
         color: white;
     }
 }
