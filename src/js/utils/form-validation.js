@@ -17,72 +17,34 @@ export default class formValidation {
         this.$back.addEventListener('click', ()=>{
             const indexButton = this.getIndex(this.$back)
 
-            // Update index button
-            this.$submit.setAttribute("data-index", "0")
+            this.updateButtonSend("0", "Suivant")
 
-            // Update label button
-            this.$submitLabel.textContent="Suivant"
+            this.updateTabs(indexButton)
 
-            // Display prev step
-            this.$groupForm.forEach( group =>{
-                const index = this.getIndex(group)
-                group.classList.remove("is-active")
-
-                if(indexButton === index){
-                    group.classList.add("is-active")
-                }
-            })
-
-            // Update tabs form
-            this.$tabs.forEach( item => {
-                item.classList.remove("is-active")
-
-                if(indexButton === this.getIndex(item)){
-                    item.classList.add("is-active")
-                }
-            })
+            this.displayStep(indexButton)
         })
 
         /* Next step */
         this.$submit.addEventListener("click", ()=>{
-            this.$inputs                = document.querySelectorAll("input")
-            this.$textarea              = document.querySelectorAll("textarea")
-            this.error = false
+            const indexButton       = this.getIndex(this.$submit)
+            this.$inputs            = document.querySelectorAll("input")
+            this.$textarea          = document.querySelectorAll("textarea")
+            this.error              = false
 
-            const indexButton = this.getIndex(this.$submit)
             if(!indexButton){
 
                 //step 1
-                // this.formValidationStep1()
+                this.formValidationStep1()
                 if(!this.error){
 
                     // Disable back button
                     this.$back.classList.add("is-active")
 
-                    // Update tabs form
-                    this.$tabs.forEach( item => {
-                        item.classList.remove("is-active")
+                    this.updateButtonSend("1", "Valider")
 
-                        if(indexButton + 1 === this.getIndex(item)){
-                            item.classList.add("is-active")
-                        }
-                    })
+                    this.updateTabs(indexButton)
 
-                    // Update index button
-                    this.$submit.setAttribute("data-index", "1")
-
-                    // Update label button
-                    this.$submitLabel.textContent="Valider"
-
-                    // Display next step
-                    this.$groupForm.forEach( group =>{
-                        const index = this.getIndex(group)
-                        group.classList.remove("is-active")
-
-                        if(indexButton + 1 === index){
-                            group.classList.add("is-active")
-                        }
-                    })
+                    this.displayStep(indexButton + 1)
 
                 }
             }else{
@@ -111,6 +73,35 @@ export default class formValidation {
             item.addEventListener('click', ()=>{
                 item.classList.remove("_error")
             })
+        })
+    }
+
+    updateButtonSend(index, text){
+        // Update index button
+        this.$submit.setAttribute("data-index", index)
+
+        // Update label button
+        this.$submitLabel.textContent=text
+    }
+
+    updateTabs(indexButton){
+        this.$tabs.forEach( item => {
+            item.classList.remove("is-active")
+
+            if(indexButton === this.getIndex(item)){
+                item.classList.add("is-active")
+            }
+        })
+    }
+
+    displayStep(indexButton){
+        this.$groupForm.forEach( group =>{
+            const index = this.getIndex(group)
+            group.classList.remove("is-active")
+
+            if(indexButton === index){
+                group.classList.add("is-active")
+            }
         })
     }
 
