@@ -17,4 +17,8 @@
     &:focus{
         border: 1.5px solid $c-primary;
     }
+
+    &._error{
+        border-color: $c-red;
+    }
 }

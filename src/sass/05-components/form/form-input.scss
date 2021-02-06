@@ -4,6 +4,7 @@
     padding: 2rem 2rem;
     border-radius: .5rem;
     outline: none;
+    font-size: 1.4rem;
 
     &::placeholder{
         color: $c-grey;
@@ -11,5 +12,9 @@
 
     &:focus{
         border: 1.5px solid $c-primary;
+    }
+
+    &._error{
+        border-color: $c-red;
     }
 }

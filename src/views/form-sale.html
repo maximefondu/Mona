@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mona - Encoder sa factrue</title>
+    <title>Mona - Encoder sa facture</title>
 </head>
 <body>
 
@@ -32,22 +32,15 @@
             </a>
             <h1 class="title">Encoder votre <span>facture de vente</span></h1>
 
-            <ul class="form-navigation">
-                <li class="form-navigation__item">
-                    <button class="js-form-naviation-button button _border" data-index="0">
-                        <span class="button__label">1. Données de contact</span>
-                    </button>
-                </li>
-                <li class="form-navigation__item">
-                    <button class="js-form-naviation-button button _border is-disable" data-index="1">
-                        <span class="button__label">2. Services</span>
-                    </button>
-                </li>
-            </ul>
+            <div>
+                <ul class="form-navigation">
+                    <li class="form-navigation__item">1. Données de contact</li>
+                    <li class="form-navigation__item">2. Services</li>
+                </ul>
+                <p>* champs requis</p>
+            </div>
 
             <form class="form-sale__form">
-
-                <p class="form-required">* champs requis</p>
 
                 <div data-index="0" class="form-group is-active js-form-section">
                     <div class="form-row">
@@ -66,8 +59,8 @@
                             <input class="form-input" type="text" id="address" placeholder="ex. Rue des petits">
                         </div>
                         <div class="form-field">
-                            <label class="form-label" for="number">Numéro de rue*</label>
-                            <input class="form-input" type="text" id="number" placeholder="ex. 23">
+                            <label class="form-label" for="address-number">Numéro de rue*</label>
+                            <input class="form-input" type="text" id="address-number" placeholder="ex. 23">
                         </div>
                     </div>
                     <div class="form-row">
@@ -97,11 +90,11 @@
                         <div class="form-row _without-label">
                             <div class="form-field">
                                 <label class="form-label">Description du service</label>
-                                <textarea class="form-textarea" placeholder="Ex. Pomme"></textarea>
+                                <textarea class="form-textarea js-form-service-description" id="description-0" placeholder="Ex. Pomme"></textarea>
                             </div>
                             <div class="form-field">
                                 <label class="form-label">Nombre d'heure(s)</label>
-                                <input class="form-input" type="number" placeholder="ex. 2">
+                                <input class="form-input js-form-service-hours" type="number" id="hours-0" placeholder="ex. 2">
                             </div>
                         </div>
                     </div>
@@ -112,7 +105,7 @@
 
                 </div>
 
-                <button type="button" class="button">
+                <button type="button" class="button js-form-submit" data-index="0">
                     <span class="js-form-submit-label button__label">Suivant</span>
                 </button>
 

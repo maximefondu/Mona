@@ -60,32 +60,4 @@
     .button__label{
         color: $c-primary;
     }
-
-    &.is-disable{
-        border-color: $c-grey;
-
-        &:before{
-            background-color: $c-grey;
-        }
-
-        &:hover{
-            border-color: darken($c-grey, 8%);
-
-            .button__label{
-                color: white;
-            }
-        }
-
-        .button__label{
-            color: $c-grey;
-        }
-    }
-
-    &.is-completed{
-        background-color: $c-primary;
-
-        .button__label{
-            color: white;
-        }
-    }
 }

@@ -1,12 +1,12 @@
 import pdf from "./utils/pdf"
-import formNavigation from "./utils/form-navigation"
 import formServices from "./utils/form-services"
+import formValidation from "./utils/form-validation"
 
 export default {
 
     init(){
         new pdf()
-        new formNavigation()
         new formServices()
+        new formValidation()
     }
 }
