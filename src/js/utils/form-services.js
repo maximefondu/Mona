@@ -4,7 +4,9 @@ export default class formServices {
         this.$container = document.querySelector(".js-form-services-container")
         this.$add = document.querySelector(".js-form-services-add")
 
-        this.init()
+        if(this.$add){
+            this.init()
+        }
     }
 
     init(){

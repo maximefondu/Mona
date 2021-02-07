@@ -1,3 +1,5 @@
+import {saveData} from "./save-data";
+
 export default class formValidation {
 
     constructor() {
@@ -8,7 +10,9 @@ export default class formValidation {
         this.$groupForm     = document.querySelectorAll(".form-group")
         this.$tabs          = document.querySelectorAll(".js-form-tabs")
 
-        this.init()
+        if(this.$submit){
+            this.init()
+        }
     }
 
     init(){
@@ -34,7 +38,7 @@ export default class formValidation {
             if(!indexButton){
 
                 //step 1
-                this.formValidationStep1()
+                // this.formValidationStep1()
                 if(!this.error){
 
                     // Disable back button
@@ -50,9 +54,16 @@ export default class formValidation {
             }else{
 
                 //step 2
-                this.formValidationStep2()
+                // this.formValidationStep2()
                 if(!this.error){
-                    document.location.href="/list-sale.html"
+
+                    if(saveData()){
+                        document.location.href="/list-sale.html"
+                    }else{
+                        console.log("error")
+                    }
+
+
                 }
             }
 
@@ -206,7 +217,6 @@ export default class formValidation {
             }
         })
     }
-
 
 
     /* Utils */
