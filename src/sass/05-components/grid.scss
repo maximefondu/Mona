@@ -1,0 +1,24 @@
+.grid{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item{
+
+        &._1{
+            width: calc(100% / 8);
+        }
+
+        &._2{
+            width: calc(100% / 4);
+        }
+
+        &._3{
+            width: calc(12.5% * 3);
+        }
+
+        &._4{
+            width: calc(100% / 2);
+        }
+    }
+}

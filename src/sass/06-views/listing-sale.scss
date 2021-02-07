@@ -1,0 +1,7 @@
+.listing-sale{
+    padding-top: 3rem;
+
+    &__main{
+        @include wrap;
+    }
+}

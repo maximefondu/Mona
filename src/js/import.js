@@ -1,6 +1,7 @@
 import pdf from "./utils/pdf"
-import formServices from "./utils/form-services"
-import formValidation from "./utils/form-validation"
+import formServices from "./components/form-services"
+import formValidation from "./components/form-validation"
+import listingSale from "./components/listing-sale"
 
 export default {
 
@@ -8,5 +9,6 @@ export default {
         new pdf()
         new formServices()
         new formValidation()
+        new listingSale()
     }
 }

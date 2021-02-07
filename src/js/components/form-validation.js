@@ -1,4 +1,4 @@
-import {saveData} from "./save-data";
+import {saveData} from "./../utils/save-data";
 
 export default class formValidation {
 
@@ -61,7 +61,7 @@ export default class formValidation {
                 if(!this.error){
 
                     if(saveData()){
-                        document.location.href="/list-sale.html"
+                        document.location.href="/listing-sale.html"
                     }else{
                         console.log("error")
                     }

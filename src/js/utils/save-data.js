@@ -1,5 +1,5 @@
 export function saveData(){
-    
+
     let datas = localStorage.getItem("bill-sell") ? JSON.parse( localStorage.getItem("bill-sell") ) : []
 
     datas.push(
@@ -20,7 +20,7 @@ export function saveData(){
 
     localStorage.setItem('bill-sell', JSON.stringify(datas));
 
-    return false
+    return true
 }
 
 function getItemById(id){
