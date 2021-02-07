@@ -26,6 +26,9 @@ export default class formValidation {
             this.updateTabs(indexButton)
 
             this.displayStep(indexButton)
+
+            // Disable back button
+            this.$back.classList.remove("is-active")
         })
 
         /* Next step */
@@ -41,12 +44,12 @@ export default class formValidation {
                 // this.formValidationStep1()
                 if(!this.error){
 
-                    // Disable back button
+                    // Enable back button
                     this.$back.classList.add("is-active")
 
                     this.updateButtonSend("1", "Valider")
 
-                    this.updateTabs(indexButton)
+                    this.updateTabs(indexButton + 1)
 
                     this.displayStep(indexButton + 1)
 

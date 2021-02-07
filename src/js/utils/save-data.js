@@ -1,8 +1,6 @@
 export function saveData(){
-
-    // Init array with local storage
+    
     let datas = localStorage.getItem("bill-sell") ? JSON.parse( localStorage.getItem("bill-sell") ) : []
-
 
     datas.push(
         {
@@ -15,13 +13,14 @@ export function saveData(){
             "zipcode": getValue("zipcode"),
             "city": getValue("city"),
             "land": getValue("land"),
-            "date": getDate()
+            "date": getDate(),
+            "services": getServices()
         }
     )
 
     localStorage.setItem('bill-sell', JSON.stringify(datas));
 
-    return true
+    return false
 }
 
 function getItemById(id){
@@ -37,5 +36,20 @@ function getDate(){
     return date.toLocaleDateString('fr-FR', {
         day: 'numeric', month: 'long', year: 'numeric'
     })
+}
+
+function getServices(){
+    const $serviceDescription    = document.querySelectorAll(".js-form-service-description")
+    const $serviceHours          = document.querySelectorAll(".js-form-service-hours")
+    let data = []
+
+    for (let i = 0; i < $serviceDescription.length; i++) {
+        data.push( {
+            "service": $serviceDescription[i].value,
+            "hours": $serviceHours[i].value,
+        } )
+    }
+
+    return data
 }
 
