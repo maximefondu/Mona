@@ -35,13 +35,12 @@ export default class formValidation {
         this.$submit.addEventListener("click", ()=>{
             const indexButton       = this.getIndex(this.$submit)
             this.$inputs            = document.querySelectorAll("input")
-            this.$textarea          = document.querySelectorAll("textarea")
             this.error              = false
 
             if(!indexButton){
 
                 //step 1
-                // this.formValidationStep1()
+                this.formValidationStep1()
                 if(!this.error){
 
                     // Enable back button
@@ -57,7 +56,7 @@ export default class formValidation {
             }else{
 
                 //step 2
-                // this.formValidationStep2()
+                this.formValidationStep2()
                 if(!this.error){
 
                     if(saveData()){
@@ -65,7 +64,6 @@ export default class formValidation {
                     }else{
                         console.log("error")
                     }
-
 
                 }
             }
@@ -78,13 +76,6 @@ export default class formValidation {
     resetErrors(){
         this.$inputs.forEach( item =>{
             item.addEventListener('focus', ()=>{
-                item.classList.remove("_error")
-            })
-        })
-
-
-        this.$textarea.forEach( item =>{
-            item.addEventListener('click', ()=>{
                 item.classList.remove("_error")
             })
         })

@@ -21,6 +21,20 @@
         }
     }
 
+    &__subitem{
+        margin: 1rem 0 0 .8rem;
+
+        li{
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: $c-grey;
+
+            @include not-last-child{
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
     &__label{
         font-size: 1.6rem;
         font-weight: 300;

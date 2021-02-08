@@ -28,7 +28,7 @@ export default class formServices {
 
         template.innerHTML = `<div class="form-row _without-label">
                             <div class="form-field">
-                                <textarea id="description-${this.serviceGenerate}" class="form-textarea js-form-service-description" placeholder="Ex. Pomme"></textarea>
+                                <input class="form-input js-form-service-description" type="text" id="description-${this.serviceGenerate}" placeholder="Ex. Pomme">
                             </div>
                             <div class="form-field">
                                 <input class="form-input js-form-service-hours" type="number" id="hours-${this.serviceGenerate}" placeholder="ex. 2">
