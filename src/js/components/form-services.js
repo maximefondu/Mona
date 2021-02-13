@@ -46,14 +46,14 @@ export default class formServices {
     templateService(index, isFirst){
         if(isFirst){
             return `<div class="form-group js-service-group js-service-group-0">
-                        <div class="form-row">
+                        <div class="form-row js-form-service">
                             <div class="form-field _3-4">
                                 <label class="form-label" for="service-name-${index}">Nom du service*</label>
                                 <input class="js-form-input required form-input" type="text" id="service-name-${index}" placeholder="Nom du service">
                             </div>
                             <div class="form-field _1-4">
                                 <label class="form-label" for="service-hours-${index}">Nombre d'heure(s)*</label>
-                                <input class="js-form-input js-form-input-price-sum-${index} required form-input" type="number" id="service-hours-${index}" placeholder="0">
+                                <input class="js-form-input js-form-input-hours-sum-${index} required form-input" type="number" id="service-hours-${index}" placeholder="0">
                             </div>
                         </div>
                         <div class="form-services js-form-service-detail-0"></div>
@@ -66,14 +66,14 @@ export default class formServices {
                     </div>`
         }else{
             return `<div class="form-group js-service-group js-service-group-${index}">
-                        <div class="form-row">
+                        <div class="form-row js-form-service">
                             <div class="form-field _3-4">
                                 <label class="form-label" for="service-name-${index}">Nom du service*</label>
                                 <input class="js-form-input required form-input" type="text" id="service-name-${index}" placeholder="Nom du service">
                             </div>
                             <div class="form-field _1-4">
                                 <label class="form-label" for="service-hours-${index}">Nombre d'heure(s)*</label>
-                                <input class="js-form-input js-form-input-price-sum-${index} required form-input" type="number" id="service-hours-${index}" placeholder="0">
+                                <input class="js-form-input js-form-input-hours-sum-${index} required form-input" type="number" id="service-hours-${index}" placeholder="0">
                             </div>
                         </div>
                         <div class="form-services js-form-service-detail-${index}"></div>
@@ -122,7 +122,7 @@ export default class formServices {
 
     hoursSum(index){
         const $parent   = document.querySelector(`.js-form-service-detail-${index}`);
-        const $inputs   = $parent.querySelectorAll(".js-form-input-price");
+        const $inputs   = $parent.querySelectorAll(".js-form-input-hours");
 
         $inputs.forEach( input =>{
             input.addEventListener('input', ()=>{
@@ -132,9 +132,9 @@ export default class formServices {
     }
 
     setHoursSum(index){
-        let $sum        = document.querySelector(`.js-form-input-price-sum-${index}`);
+        let $sum        = document.querySelector(`.js-form-input-hours-sum-${index}`);
         const $parent   = document.querySelector(`.js-form-service-detail-${index}`);
-        const $inputs   = $parent.querySelectorAll(".js-form-input-price");
+        const $inputs   = $parent.querySelectorAll(".js-form-input-hours");
 
 
         let valueSum    = 0
@@ -147,24 +147,24 @@ export default class formServices {
 
     templateDetail(index, countItem){
         if(countItem === 0){
-            return `<div class="form-row js-service-detail-${index}-${countItem}">
+            return `<div class="form-row js-service-detail js-service-detail-${index}-${countItem}">
                         <div class="form-field _3-4">
                             <label class="form-label">Nom du détail*</label>
                             <input class="js-form-input required form-input" type="text" placeholder="Nom du détail">
                         </div>
                         <div class="form-field _1-4">
                             <label class="form-label">Nombre d'heure(s)*</label>
-                            <input class="js-form-input required form-input js-form-input-price" type="number" placeholder="0">
+                            <input class="js-form-input required form-input js-form-input-hours" type="number" placeholder="0">
                         </div>
                         <button class="js-service-detail-remove-${index}-${countItem} remove"></button>
                     </div>`
         }else{
-            return `<div class="form-row js-service-detail-${index}-${countItem}">
+            return `<div class="form-row js-service-detail js-service-detail-${index}-${countItem}">
                         <div class="form-field _3-4">
                             <input class="js-form-input required form-input" type="text" placeholder="Nom du service">
                         </div>
                         <div class="form-field _1-4">
-                            <input class="js-form-input required form-input js-form-input-price" type="number" placeholder="0">
+                            <input class="js-form-input required form-input js-form-input-hours" type="number" placeholder="0">
                         </div>
                         <button class="js-service-detail-remove-${index}-${countItem} remove"></button>
                     </div>`

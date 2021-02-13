@@ -9,6 +9,13 @@
         margin-bottom: 4rem;
     }
 
+    &:first-child{
+        .remove{
+            top: 66%;
+            transform: translate(50%, -50%);
+        }
+    }
+
     .remove{
         position: absolute;
         top: 50%;

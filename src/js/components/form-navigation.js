@@ -1,4 +1,5 @@
 import formValdiation from './form-validation'
+import formSubmit from './form-submit'
 
 export default class formNavigation {
 
@@ -20,6 +21,7 @@ export default class formNavigation {
             if(this.currentStep === 0) {
                 this.nextStep()
             }else{
+                this.validation()
             }
         })
 
@@ -50,6 +52,14 @@ export default class formNavigation {
         this.toggleButtonBack()
         this.toggleTabs()
         this.toggleTabs()
+    }
+
+    validation(){
+        const succes = new formValdiation().init(this.currentStep)
+
+        if(succes){
+            new formSubmit
+        }
     }
 
 
