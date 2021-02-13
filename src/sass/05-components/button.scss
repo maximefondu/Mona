@@ -1,0 +1,52 @@
+.button{
+    padding: 1.4rem 2.6rem;
+    border: none;
+    background-color: $c-primary;
+    border-radius: 4px;
+    box-shadow: 0 0 1.8rem rgba(black, .15);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    @include transition;
+
+    @include event{
+        box-shadow: 0 0 1.8rem rgba(black, .05);
+        transform: scale(.98);
+    }
+
+    &__label{
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: white;
+    }
+
+    &__icon{
+        fill: white;
+        width: 1.2rem;
+        margin-left: 8px;
+    }
+
+    /* Border */
+    &._border{
+        background-color: transparent;
+        border: 1.4px solid $c-primary;
+        box-shadow: none;
+
+        .button__label{
+            color: $c-primary;
+        }
+
+        .button__icon{
+            fill: $c-primary;
+        }
+    }
+
+    /* Disable */
+    &.is-disable{
+        display: none;
+    }
+
+    &._right{
+        margin-left: auto;
+    }
+}

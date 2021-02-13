@@ -1,0 +1,47 @@
+.header{
+    padding: 4rem 0;
+
+    &__main{
+        @include wrap;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logo{
+
+        svg{
+            width: 11.5rem;
+        }
+    }
+
+    &__list{
+        display: flex;
+    }
+
+    &__item{
+        @include not-last-child{
+            margin-right: 4rem;
+        }
+
+        &:last-child{
+            .header__link{
+                color: $c-secondary;
+
+                @include event{
+                    color: darken($c-secondary, 15%);
+                }
+            }
+        }
+    }
+
+    &__link{
+        font-weight: 700;
+        @include transition;
+        color: $c-primary;
+
+        @include event{
+            color: darken($c-primary, 15%);
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.form-row{
+    width: calc(100% + 5rem);
+    position: relative;
+    display: flex;
+    margin: 0 -2.5rem;
+    position: relative;
+
+    @include not-last-child{
+        margin-bottom: 4rem;
+    }
+
+    .remove{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(50%, -50%);
+    }
+}

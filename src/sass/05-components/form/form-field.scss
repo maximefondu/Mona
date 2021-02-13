@@ -1,0 +1,14 @@
+.form-field{
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 5rem);
+    margin: 0 2.5rem;
+
+    &._3-4{
+        width: calc(70% - 5rem);
+    }
+
+    &._1-4{
+        width: calc(30% - 5rem);
+    }
+}

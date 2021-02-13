@@ -1,0 +1,60 @@
+.form-head{
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem 0 5rem;
+    align-items: center;
+
+    &__list{
+        display: flex;
+    }
+
+    &__item{
+        display: flex;
+        align-items: center;
+
+        @include not-last-child{
+
+            @include after{
+                @include css-triangle($c-grey-medium, right, 6px);
+                margin: 0 2.6rem;
+            }
+        }
+
+        &.is-active{
+            .form-head{
+                &__number{
+                    background-color: $c-primary;
+                }
+                &__label{
+                    color: $c-primary;
+                }
+            }
+        }
+    }
+
+    &__number{
+        flex-shrink: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: $c-grey-medium;
+        color: white;
+        margin-right: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    &__label{
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $c-grey-medium;
+    }
+
+    &__required{
+        margin: 0;
+        font-size: 1.2rem;
+    }
+}

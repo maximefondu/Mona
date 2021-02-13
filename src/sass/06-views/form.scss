@@ -1,0 +1,6 @@
+.form{
+
+    &__main{
+        @include wrap($container-wrap-small);
+    }
+}

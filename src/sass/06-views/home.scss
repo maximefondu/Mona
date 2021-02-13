@@ -1,0 +1,37 @@
+.home{
+
+    &__main{
+        @include wrap($container-wrap-small);
+    }
+
+    &__list{
+        display: flex;
+        flex-wrap: wrap;
+        margin: -4rem;
+    }
+
+    &__item{
+        width: calc(50% - 4rem);
+        margin: 2rem;
+    }
+
+    &__link{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 21rem;
+        border-radius: 1rem;
+        background-color: white;
+        box-shadow: 0 0 2.4rem rgba(black, .15);
+        @include transition;
+
+        font-size: 2.2rem;
+        color: $c-primary;
+        font-weight: 700;
+
+        @include event{
+            box-shadow: 0 0 2.4rem rgba(black, .05);
+        }
+    }
+}
