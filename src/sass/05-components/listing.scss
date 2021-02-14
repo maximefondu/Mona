@@ -62,4 +62,21 @@
         margin-bottom: 1rem;
         cursor: pointer;
     }
+
+    & ._title{
+        color: $c-grey-dark;
+    }
+
+    & ._list{
+        @include not-last-child{
+            margin-bottom: 1rem;
+        }
+    }
+
+    & ._item{
+        color: $c-grey;
+        font-size: 1.6rem;
+        line-height: 1.2;
+        margin: 6px 0 6px 8px;
+    }
 }

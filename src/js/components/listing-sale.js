@@ -115,22 +115,22 @@ export default class listingSale {
     /* Utils */
 
     createService(container, data, value, symbol){
+        const parent = this.setElement("ul", ["_parent"])
         data.services.forEach( service => {
-            const parent = this.setElement("div", [])
-            const list = this.setElement("div", [])
-            const item = this.setElement("div", [], `${service[value]}${symbol}` )
+            const list = this.setElement("li", ["_list"])
+            const item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
 
             list.append(item)
             parent.append(list)
-            container.append(parent)
 
             this.createDetail(list, service, value, symbol)
         })
+        container.append(parent)
     }
 
     createDetail(parent, service, value, symbol){
         service.details.forEach( detail => {
-            const child = this.setElement("div", [], `${detail[value]}${symbol}`)
+            const child = this.setElement("div", ["_item"], `${detail[value]}${symbol}`)
             parent.append( child )
         })
     }

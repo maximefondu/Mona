@@ -35,6 +35,65 @@
             <div class="admin__main">
                 <h1 class="title">Panneau d'<strong>administration</strong></h1>
 
+                <div class="form js-form-container">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="name">Nom</label>
+                            <input class="js-form-input required form-input" type="text" id="name" placeholder="ex. Nom">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="forename">Prénom</label>
+                            <input class="js-form-input required form-input" type="text" id="forename" placeholder="ex. Prénom">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="address">Adresse</label>
+                            <input class="js-form-input required form-input" type="text" id="address" placeholder="ex. adresse">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="zip_code">Code postal</label>
+                            <input class="js-form-input required form-input" type="text" id="zip_code" placeholder="ex. Code postal">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="city">Ville</label>
+                            <input class="js-form-input required form-input" type="text" id="city" placeholder="ex. Ville">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="land">Pays</label>
+                            <input class="js-form-input required form-input" type="text" id="land" placeholder="ex. Pays">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="email">Adresse e-mail</label>
+                            <input class="js-form-input required form-input" type="email" id="email" placeholder="ex. E-mail">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="tel">Numéro de téléphone</label>
+                            <input class="js-form-input required form-input" type="text" id="tel" placeholder="ex. Téléphone">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="rate">Taux horaire (HTVA)</label>
+                            <input class="js-form-input required form-input" type="number" id="rate" placeholder="ex. Taux horaire">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="iban">IBAN</label>
+                            <input class="js-form-input required form-input" type="text" id="iban" placeholder="ex. IBAN">
+                        </div>
+                    </div>
+
+                    <button class="button js-submit-data" type="button">
+                        <span class="button__label">Sauvegarder</span>
+                    </button>
+
+                    <p class="form-success js-form-success"></p>
+                </div>
+
                 <div class="admin-data">
                     <div class="admin-data__buttons">
                         <button class="button js-export-data">

@@ -3,6 +3,30 @@
     &__main{
         @include wrap($container-wrap-small);
     }
+
+    .form{
+        margin: 4rem 0 12rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .form-success{
+        margin: 3rem 0 0 0;
+        border-radius: 4px;
+        background-color: #58BB36;
+        padding: 1rem 4.4rem;
+        color: white;
+        font-weight: 700;
+        opacity: 0;
+        height: 0;
+        transition: opacity 300ms ease-in-out;
+
+        &.is-active{
+            opacity: 1;
+            height: auto;
+        }
+    }
 }
 
 .admin-data{
@@ -28,7 +52,7 @@
         color: white;
         font-weight: 700;
         opacity: 0;
-        height: auto;
+        height: 0;
         transition: opacity 300ms ease-in-out;
         
         &.is-active{
