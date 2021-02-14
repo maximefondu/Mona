@@ -33,8 +33,20 @@
     <main>
         <section class="admin">
             <div class="admin__main">
-                Admin
-                <button class="js-export-data">export data</button>
+                <h1 class="title">Panneau d'<strong>administration</strong></h1>
+
+                <div class="admin-data">
+                    <div class="admin-data__buttons">
+                        <button class="button js-export-data">
+                            <span class="button__label">Exporter les données</span>
+                        </button>
+                        <label class="button _border js-import-data" for="file-import">
+                            <span class="button__label">Importer les données</span>
+                        </label>
+                        <input type="file" class="js-import-data-input u-hidden" type="file" id="file-import">
+                    </div>
+                    <p class="admin-data__succes js-import-export-succes"></p>
+                </div>
             </div>
         </section>
     </main>

@@ -1,0 +1,39 @@
+.admin{
+
+    &__main{
+        @include wrap($container-wrap-small);
+    }
+}
+
+.admin-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem 0;
+
+    &__buttons{
+        display: flex;
+        justify-content: center;
+
+        .button:first-child{
+            margin-right: 3rem;
+        }
+    }
+
+    &__succes{
+        margin: 3rem 0 0 0;
+        border-radius: 4px;
+        background-color: #58BB36;
+        padding: 1rem 4.4rem;
+        color: white;
+        font-weight: 700;
+        opacity: 0;
+        height: auto;
+        transition: opacity 300ms ease-in-out;
+        
+        &.is-active{
+            opacity: 1;
+            height: auto;
+        }
+    }
+}

@@ -1,41 +1,51 @@
 export default class exportData {
 
     constructor() {
-        this.button = document.querySelector(".js-export-data")
+        this.$button = document.querySelector(".js-export-data")
+        this.$succes = document.querySelector(".js-import-export-succes")
 
-        console.log(this.button)
-
-        if(this.button){
+        if(this.$button){
             this.init()
         }
     }
 
     init(){
-        this.button.addEventListener("click", ()=>{
-            this.bills = localStorage.getItem("bills")
-            this.settings = localStorage.getItem("settings")
+        this.$button.addEventListener("click", ()=>{
 
+            this.filterData()
 
-
-            let dataUriBills = 'data:application/json;charset=utf-8,'+ encodeURIComponent(this.bills)
-            let dataUriSettings = 'data:application/json;charset=utf-8,'+ encodeURIComponent(this.settings)
-
-            let linkElementBills = document.createElement('a')
+            let dataUriBills = 'data:application/json;charset=utf-8,'+ encodeURIComponent(this.data)
+            const linkElementBills = document.createElement('a')
             linkElementBills.setAttribute('href', dataUriBills)
-            linkElementBills.setAttribute('download', this.nameFile("bills"))
+            linkElementBills.setAttribute('download', this.nameFile())
             linkElementBills.click()
 
-            let linkElementSettings = document.createElement('a')
-            linkElementSettings.setAttribute('href', dataUriSettings)
-            linkElementSettings.setAttribute('download', this.nameFile("settings"))
-            linkElementSettings.click()
+            this.success()
         })
     }
 
-    nameFile(name){
+    filterData(){
+        this.data = {}
+        this.bills = JSON.parse(localStorage.getItem("bills"))
+        this.settings = JSON.parse(localStorage.getItem("settings"))
+
+        this.data['bills'] = this.bills
+        this.data['settings'] = this.settings
+        this.data = JSON.stringify(this.data)
+    }
+
+    nameFile(){
         const date = new Date()
-        const mounth = date.toLocaleString('default', { month: 'long' })
-        return `${name}-data-${mounth}.json`
+        const mounth = (date.toLocaleString('default', { month: 'long' })).toLowerCase()
+        return `bills-data-${mounth}.json`
+    }
+
+    success(){
+        this.$succes.textContent="Les données ont bien été exporter !"
+        this.$succes.classList.add("is-active")
+        setTimeout( ()=>{
+            this.$succes.classList.remove("is-active")
+        }, 5000)
     }
 }
 
