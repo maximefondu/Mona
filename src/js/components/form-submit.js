@@ -12,10 +12,9 @@ export default class formSubmit {
         this.getDetailsData()
         this.setDate()
         this.setNumberBill()
-
         this.setLocalStorage()
+        this.redirection()
     }
-
 
     getContactData(){
         this.$inputsContact.forEach( $input => {
@@ -28,24 +27,28 @@ export default class formSubmit {
 
     getServiceData(){
         let services = []
-        let service = {}
+        let hoursServices = 0
 
         this.$services.forEach( ($service, index) =>{
+            let service = {}
             const $inputs   = $service.querySelectorAll(".js-form-input")
             const name      = $inputs[0].value
-            const hoursCum  = $inputs[1].value
+            const hours     = parseFloat( $inputs[1].value )
 
-            service["hours_cum"] = hoursCum
+            service["hours"] = hours
             service["name"] = name
-            service["htva"] = this.setPriceHTVA(hoursCum).toFixed(2)
-            service["tvac"] = this.setPriceTVAC(hoursCum).toFixed(2)
-            service["tva"] = this.setTVA(hoursCum).toFixed(2)
+            service["htva"] = this.setPriceHTVA(hours).toFixed(2)
+            service["tvac"] = this.setPriceTVAC(hours).toFixed(2)
+            service["tva"] = this.setTVA(hours).toFixed(2)
 
             services.push(service)
+
+            hoursServices += hours
         })
 
-        this.object["services"] = services
+        this.setPriceCum(hoursServices)
 
+        this.object["services"] = services
     }
 
     getDetailsData(){
@@ -78,7 +81,8 @@ export default class formSubmit {
     setDate(){
         this.object.date = {
             day : this.date.getDay(),
-            mounth : this.date.toLocaleString('default', { month: 'long' }),
+            month : this.date.toLocaleString('default', { month: 'long' }),
+            month_numeric : parseInt( this.date.toLocaleString('default', { month: 'numeric' }) ),
             years : this.date.getFullYear()
         }
     }
@@ -135,6 +139,16 @@ export default class formSubmit {
         localStorage.setItem('bills', JSON.stringify(data));
     }
 
+    setPriceCum(hours){
+        this.object["htva"] = this.setPriceHTVA(hours).toFixed(2)
+        this.object["tvac"] = this.setPriceTVAC(hours).toFixed(2)
+        this.object["tva"] = this.setTVA(hours).toFixed(2)
+        this.object["hours"] = parseFloat(hours)
+    }
+
+    redirection(){
+        document.location.href="/listing-sale.html"
+    }
 
     /* Get */
 

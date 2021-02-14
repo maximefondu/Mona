@@ -1,0 +1,65 @@
+.listing{
+    margin-top: 5rem;
+
+    &__head{
+        display: flex;
+        margin-bottom: 3rem;
+
+        .listing__item{
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+    }
+
+    &__container{
+
+        @include not-last-child{
+            margin-bottom: 6rem;
+        }
+
+        .title{
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__list{
+        display: flex;
+        margin: 0 -12px;
+        padding: .6rem 6px;
+
+        @include not-last-child{
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__item{
+        font-size: 1.6rem;
+        padding: 0 6px;
+
+        &._small{
+            width: 10%;
+        }
+
+        &._medium{
+            width: 15%;
+        }
+
+        &._big{
+            width: 35%;
+        }
+
+        &._right{
+            text-align: right;
+        }
+    }
+
+    &__button{
+        background-color: transparent;
+        border: none;
+        font-family: $f-main;
+        padding: 0;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+}

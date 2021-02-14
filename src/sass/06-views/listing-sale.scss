@@ -1,0 +1,12 @@
+.listing-sale{
+
+    &__main{
+        @include wrap;
+    }
+
+    &__head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

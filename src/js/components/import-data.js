@@ -27,10 +27,9 @@ export default class exportData {
     updateData(datas){
         this.cleanLocalStorage()
 
-        datas.forEach( data =>{
-            const key = Object.keys(data)
-            localStorage.setItem(key, JSON.stringify(data[key]))
-        })
+        Object.keys(datas).forEach(key => {
+            localStorage.setItem(key, JSON.stringify(datas[key]))
+        });
 
         this.success()
     }

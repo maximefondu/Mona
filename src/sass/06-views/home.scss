@@ -2,9 +2,13 @@
 
     &__main{
         @include wrap($container-wrap-small);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     &__list{
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         margin: -4rem;
