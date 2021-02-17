@@ -45,8 +45,10 @@ export default class listingSale {
             const numberBill    = this.setElement("div", ["listing__item", "_small"], data.countBill)
             const client        = this.setElement("div", ["listing__item", "_medium"], this.getClient(data))
             const download      = this.setElement("button", ["listing__download"])
+            const remove        = this.setElement("button", ["listing__remove"])
 
             this.downloadPdf(download, index)
+            this.removeItem(remove, index)
 
             container.append(numberBill)
             container.append(client)
@@ -56,6 +58,7 @@ export default class listingSale {
             container.append( this.setTVAC(data) )
             container.append( this.setTVA(data) )
             container.append( download )
+            container.append( remove )
             parent.append(container)
         })
     }
@@ -145,6 +148,44 @@ export default class listingSale {
     downloadPdf(button, index){
         button.addEventListener("click", ()=>{
             new downloadPdf(index)
+        })
+    }
+
+    removeItem(button, index){
+        button.addEventListener("click", ()=>{
+
+            //modal
+            const parent = this.setElement("div", ["modal"])
+            const text   = this.setElement("p", ["modal__text"], "Êtes-vous sûr de vouloir supprimer cette facture")
+            const div   = this.setElement("div", ["modal__buttons"])
+            const yes    = this.setElement("button", ["modal__yes"], "Oui")
+            const no     = this.setElement("button", ["modal__no"], "Non")
+            parent.append(text)
+            parent.append(div)
+            div.append(yes)
+            div.append(no)
+            document.body.append(parent)
+
+            no.addEventListener('click', ()=>{
+                parent.remove()
+            })
+
+            yes.addEventListener('click', ()=>{
+                parent.remove()
+                
+                //remove line front
+                button.parentNode.remove()
+
+                //remove data
+                const data = this.getData()
+                data.splice(index, 1)
+                localStorage.setItem("bills", JSON.stringify(data))
+
+                //number bill
+                const settings = JSON.parse(localStorage.getItem("settings"))
+                settings.count = settings.count - 1
+                localStorage.setItem("settings", JSON.stringify(settings))
+            })
         })
     }
 
