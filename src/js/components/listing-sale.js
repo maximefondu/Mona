@@ -1,3 +1,5 @@
+import downloadPdf from "./download-pdf"
+
 export default class listingSale {
 
     constructor() {
@@ -36,12 +38,15 @@ export default class listingSale {
     }
 
     setItems(){
-        this.getData().forEach( data =>{
+        this.getData().forEach( (data, index) =>{
             const parent = document.querySelector(`.js-listing-container-${this.getMonth(data)}`)
 
             const container     = this.setElement("div", ["listing__list"])
             const numberBill    = this.setElement("div", ["listing__item", "_small"], data.countBill)
             const client        = this.setElement("div", ["listing__item", "_medium"], this.getClient(data))
+            const download      = this.setElement("button", ["listing__download"])
+
+            this.downloadPdf(download, index)
 
             container.append(numberBill)
             container.append(client)
@@ -50,6 +55,7 @@ export default class listingSale {
             container.append( this.setHTVA(data) )
             container.append( this.setTVAC(data) )
             container.append( this.setTVA(data) )
+            container.append( download )
             parent.append(container)
         })
     }
@@ -57,7 +63,14 @@ export default class listingSale {
     setServices(data){
         const container = this.setElement("div", ["listing__item", "_big"])
 
-        this.createDetailsButton(container, data)
+        if(this.haveOneElement(data)){
+            const button = this.setElement("button", ["listing__button"], "Voir détails")
+            container.append(button)
+            this.showDetails(button)
+        }else{
+            container.classList.add("_oneElement")
+        }
+
         this.createService(container, data, "name", "")
 
         return container
@@ -70,7 +83,9 @@ export default class listingSale {
         const hours     = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(hours)
 
-        this.createService(container, data, value, symbol)
+        if(this.haveOneElement(data)){
+            this.createService(container, data, value, symbol)
+        }
 
         return container
     }
@@ -82,7 +97,9 @@ export default class listingSale {
         const htva      = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(htva)
 
-        this.createService(container, data, value, symbol)
+        if(this.haveOneElement(data)) {
+            this.createService(container, data, value, symbol)
+        }
 
         return container
     }
@@ -94,7 +111,9 @@ export default class listingSale {
         const tvac      = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(tvac)
 
-        this.createService(container, data, value, symbol)
+        if(this.haveOneElement(data)) {
+            this.createService(container, data, value, symbol)
+        }
 
         return container
     }
@@ -106,11 +125,28 @@ export default class listingSale {
         const tva       = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(tva)
 
-        this.createService(container, data, value, symbol)
+        if(this.haveOneElement(data)) {
+            this.createService(container, data, value, symbol)
+        }
 
         return container
     }
 
+    showDetails(button){
+        button.addEventListener('click', ()=>{
+            button.classList.toggle("is-active")
+            const $parents = button.parentNode.parentNode.querySelectorAll("._parent")
+            $parents.forEach( $parent =>{
+                $parent.classList.toggle("is-active")
+            })
+        })
+    }
+
+    downloadPdf(button, index){
+        button.addEventListener("click", ()=>{
+            new downloadPdf(index)
+        })
+    }
 
     /* Utils */
 
@@ -135,7 +171,7 @@ export default class listingSale {
         })
     }
 
-    createDetailsButton(container, data){
+    haveOneElement(data){
         let visible = false
 
         data.services.forEach( service => {
@@ -148,10 +184,7 @@ export default class listingSale {
             visible = true
         }
 
-        if(visible){
-            const button = this.setElement("button", ["listing__button"], "Voir détails")
-            container.append(button)
-        }
+        return visible
     }
 
     getData(){

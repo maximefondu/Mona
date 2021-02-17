@@ -37,15 +37,16 @@ export default class admin {
     }
 
     setValue(){
-        const data = localStorage.getItem("settings") ? JSON.parse(localStorage.getItem("settings")) : false
+        const data = localStorage.getItem("settings") ? JSON.parse(localStorage.getItem("settings")) : []
 
-        if(data){
-            this.$inputs.forEach( $input => {
-                const key = this.getId($input)
+        this.$inputs.forEach( $input => {
+            const key = this.getId($input)
 
+            if(data[key]){
                 $input.value = data[key]
-            })
-        }
+            }
+
+        })
     }
 
     setLocalStorage(){

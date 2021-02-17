@@ -23,9 +23,14 @@
     }
 
     &__list{
+        position: relative;
         display: flex;
         margin: 0 -12px;
-        padding: .6rem 6px;
+        padding: 1rem 6px;
+
+        &:nth-child(2n){
+            background-color: $c-grey-light;
+        }
 
         @include not-last-child{
             margin-bottom: 2rem;
@@ -34,6 +39,7 @@
 
     &__item{
         font-size: 1.6rem;
+        line-height: 1.2;
         padding: 0 6px;
 
         &._small{
@@ -51,6 +57,12 @@
         &._right{
             text-align: right;
         }
+
+        &._oneElement{
+            ._title{
+                color: $c-main;
+            }
+        }
     }
 
     &__button{
@@ -59,8 +71,38 @@
         font-family: $f-main;
         padding: 0;
         font-size: 1.6rem;
-        margin-bottom: 1rem;
         cursor: pointer;
+        outline: none;
+        @include transition;
+        display: flex;
+        align-items: center;
+
+        @include after{
+            @include background-image("arrow.svg", contain, center);
+            width: .8rem;
+            height: .8rem;
+            margin-left: 1rem;
+            @include transition;
+        }
+
+        &:hover{
+            color: $c-primary;
+        }
+
+        &.is-active{
+            &:after{
+                transform: scale(-1);
+            }
+        }
+    }
+
+    & ._parent{
+        display: none;
+        margin-top: 1rem;
+
+        &.is-active{
+            display: block;
+        }
     }
 
     & ._title{
@@ -78,5 +120,22 @@
         font-size: 1.6rem;
         line-height: 1.2;
         margin: 6px 0 6px 8px;
+    }
+
+    &__download{
+        position: absolute;
+        top: 1.1rem;
+        right: -2rem;
+        border: none;
+        background-color: transparent;
+        @include background-image("download.svg", contain, center);
+        width: 1rem;
+        height: 1.4rem;
+        cursor: pointer;
+        @include transition;
+
+        @include event{
+            opacity: .6;
+        }
     }
 }

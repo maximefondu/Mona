@@ -80,10 +80,9 @@ export default class formSubmit {
 
     setDate(){
         this.object.date = {
-            day : this.date.getDay(),
+            day : this.date.getDate(),
             month : this.date.toLocaleString('default', { month: 'long' }),
-            month_numeric : parseInt( this.date.toLocaleString('default', { month: 'numeric' }) ),
-            years : this.date.getFullYear()
+            year : this.date.getFullYear()
         }
     }
 
@@ -120,7 +119,9 @@ export default class formSubmit {
     }
 
     setPriceHTVA(hours){
-        return hours * 42
+        const data = localStorage.getItem("settings") ? this.getLocalStorage("settings") : false
+        const rate = parseFloat(data.rate)
+        return hours * rate
     }
 
     setPriceTVAC(hours){

@@ -36,8 +36,11 @@ export default class exportData {
 
     nameFile(){
         const date = new Date()
-        const mounth = (date.toLocaleString('default', { month: 'long' })).toLowerCase()
-        return `bills-data-${mounth}.json`
+        const day = date.getDate()
+        const month = date.toLocaleString('default', { month: '2-digit' })
+        const year = date.getFullYear()
+
+        return `data-mona-${day}-${month}-${year}.json`
     }
 
     success(){
