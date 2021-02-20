@@ -1,0 +1,42 @@
+.paid{
+    border: none;
+    background-color: transparent;
+    width: 1.4em;
+    height: 1.4rem;
+    padding: 0;
+    margin-right: 2rem;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    @include transition;
+
+    &._paid{
+        @include background-image("check.svg", contain, center, $p_svg);
+
+        @include event{
+            @include after{
+                content: attr(data-date);
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translate(2rem, -50%);
+                white-space: nowrap;
+                background-color: white;
+                font-family: $f-main;
+                padding: 6px 1.2rem;
+                border-radius: 1.2rem;
+                box-shadow: 0 0 15px rgba(black, .15);
+                z-index: 99;
+            }
+        }
+    }
+
+    &._not-paid{
+        @include background-image("cross-red.svg", contain, center, $p_svg);
+        @include transition;
+
+        @include event{
+            transform: scale(1.1);
+        }
+    }
+}

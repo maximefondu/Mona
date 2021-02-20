@@ -47,10 +47,7 @@ export default class listingPurchase {
             const client        = this.setElement("div", ["listing__item", "_medium"], data.company)
 
             container.append(client)
-            container.append( this.setProducts(data) )
-            container.append( this.setHTVA(data) )
-            container.append( this.setTVAC(data) )
-            container.append( this.setTVA(data) )
+            container.append( this.setProducts(data), this.setHTVA(data), this.setTVAC(data), this.setTVA(data), this.setPaid(data, index) )
 
             parent.append(container)
 
@@ -210,6 +207,58 @@ export default class listingPurchase {
                 this.setListing()
             })
         })
+    }
+
+    isPaid(data){
+        return data.date_pay ? true : false
+    }
+
+    setPaid(data, index){
+        const paid = this.isPaid(data) ? "_paid" : "_not-paid"
+        const parent = this.setElement("div", ["listing__item", "_small", "_right"])
+        const button = this.setElement("button", [paid, "paid"])
+        this.setDate(button, data.date_pay)
+        parent.append(button)
+
+        button.addEventListener('click', (e)=>{
+            //Create modal
+            const parent    = this.setElement("div", ["modal"])
+            const back      = this.setElement("div", ["modal__back"])
+            const input     = this.setElement("input", ["form-input"])
+            const submit    = this.setElement("button", ["button"])
+            const submitLabel    = this.setElement("span", ["button__label"], "Valider")
+            input.setAttribute("type", "date")
+            parent.append(input, submit)
+            submit.append(submitLabel)
+            document.body.append(back)
+            document.body.append(parent)
+
+            back.addEventListener('click', ()=>{
+                parent.remove()
+                back.remove()
+            })
+
+            //Set date
+            submit.addEventListener('click', ()=>{
+                const storage = this.getData()
+                storage[index].date_pay = input.value
+                localStorage.setItem("purchase", JSON.stringify( storage ))
+
+                button.classList.remove("_not-paid")
+                button.classList.add("_paid")
+                this.setDate(button, input.value)
+
+                parent.remove()
+                back.remove()
+            })
+        })
+
+        return parent
+    }
+
+    setDate(item, value){
+        const date = new Date(value)
+        item.setAttribute("data-date", `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`)
     }
 
     /* Get */

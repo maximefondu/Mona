@@ -64,4 +64,17 @@
             transform: scale(.98);
         }
     }
+
+    &__back{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    .form-input{
+        margin-bottom: 3rem;
+    }
 }
