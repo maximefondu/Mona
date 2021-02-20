@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./../sass/main.scss">
     <title>Mona</title>
 </head>
-<body>
+<body data-type="sale">
 
 <header class="header">
     <div class="header__main">
@@ -38,6 +38,14 @@
                     <div class="header__link">
                         Factures d'achat
                     </div>
+                    <div class="header__submenu">
+                        <a href="/form-buy.html">
+                            Nouvelle facture
+                        </a>
+                        <a href="/listing-buy.html">
+                            Factures
+                        </a>
+                    </div>
                 </li>
             </ul>
             <a class="header__account" href="/admin.html">Maxime Fondu</a>
@@ -59,7 +67,7 @@
                         </li>
                         <li class=" js-form-head form-head__item">
                             <span class="form-head__number">2</span>
-                            <span class="form-head__label">Services</span>
+                            <span class="form-head__label">Produits et services</span>
                         </li>
                     </ul>
 
@@ -89,7 +97,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label class="form-label" for="name">Addresse*</label>
+                            <label class="form-label" for="address">Addresse*</label>
                             <input class="js-form-input required form-input" type="text" id="address" placeholder="ex. Rue des paquerettes, 10">
                         </div>
                         <div class="form-field">

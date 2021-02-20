@@ -1,5 +1,6 @@
 import formValdiation from './form-validation'
-import formSubmit from './form-submit'
+import formSubmitSale from './sale/form-submit-sale'
+import formSubmitBuy from './buy/form-submit-buy'
 
 export default class formNavigation {
 
@@ -58,7 +59,11 @@ export default class formNavigation {
         const succes = new formValdiation().init(this.currentStep)
 
         if(succes){
-            new formSubmit
+            if( this.getAttribute(document.body, "type") === "sale" ) {
+                new formSubmitSale
+            }else{
+                new formSubmitBuy
+            }
         }
     }
 
@@ -98,6 +103,10 @@ export default class formNavigation {
         }else{
             label.textContent = "Valider"
         }
+    }
+
+    getAttribute(item, attr){
+        return item.getAttribute(`data-${attr}`)
     }
 }
 

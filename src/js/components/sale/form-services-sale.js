@@ -1,4 +1,4 @@
-export default class formServices {
+export default class formServicesSale {
 
     constructor() {
         this.serviceCount = 0
@@ -48,7 +48,7 @@ export default class formServices {
             return `<div class="form-group js-service-group js-service-group-0">
                         <div class="form-row js-form-service">
                             <div class="form-field _3-4">
-                                <label class="form-label" for="service-name-${index}">Nom du service*</label>
+                                <label class="form-label" for="service-name-${index}">Nom des service(s)*</label>
                                 <input class="js-form-input required form-input" type="text" id="service-name-${index}" placeholder="Nom du service">
                             </div>
                             <div class="form-field _1-4">
@@ -68,7 +68,7 @@ export default class formServices {
             return `<div class="form-group js-service-group js-service-group-${index}">
                         <div class="form-row js-form-service">
                             <div class="form-field _3-4">
-                                <label class="form-label" for="service-name-${index}">Nom du service*</label>
+                                <label class="form-label" for="service-name-${index}">Nom des service(s)*</label>
                                 <input class="js-form-input required form-input" type="text" id="service-name-${index}" placeholder="Nom du service">
                             </div>
                             <div class="form-field _1-4">

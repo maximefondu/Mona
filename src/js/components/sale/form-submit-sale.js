@@ -1,4 +1,4 @@
-export default class formSubmit {
+export default class formSubmitSale {
 
     constructor() {
         this.object = {}

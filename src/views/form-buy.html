@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./../sass/main.scss">
     <title>Mona</title>
 </head>
-<body>
+<body data-type="buy">
 
 <header class="header">
     <div class="header__main">
@@ -54,31 +54,92 @@
 </header>
 
     <main>
-        <section class="listing-sale">
-            <div class="listing-sale__main">
-                <div class="listing-sale__head">
-                    <h1 class="title">Liste des <strong>factures de vente</strong></h1>
-                    <a href="/form-sale.html" class="button">
-                        <span class="button__label">Créer une facture</span>
+        <section class="form">
+            <div class="form__main">
+
+                <h1 class="title">Encoder votre <strong>facture d'achat</strong></h1>
+
+                <div class="form-head">
+                    <ul class="form-head__list">
+                        <li class=" js-form-head form-head__item is-active">
+                            <span class="form-head__number">1</span>
+                            <span class="form-head__label">Données de contact</span>
+                        </li>
+                        <li class=" js-form-head form-head__item">
+                            <span class="form-head__number">2</span>
+                            <span class="form-head__label">Produits et services</span>
+                        </li>
+                    </ul>
+
+                    <p class="form-head__required">* Champs requis</p>
+                </div>
+
+                <div class="js-form-container form-container is-active">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="company">Société*</label>
+                            <input class="js-form-input required form-input" type="text" id="company" placeholder="ex. Onie">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="tva_number">Numéro de TVA*</label>
+                            <input class="js-form-input required form-input" type="text" id="tva_number" placeholder="ex. 04546.363.363">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="address">Addresse*</label>
+                            <input class="js-form-input required form-input" type="text" id="address" placeholder="ex. Rue des paquerettes, 10">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="zip_code">Code postal*</label>
+                            <input class="js-form-input required form-input" type="number" id="zip_code" placeholder="ex. 5000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="city">Ville*</label>
+                            <input class="js-form-input required form-input" type="text" id="city" placeholder="ex. Namur">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="land">Pays*</label>
+                            <input class="js-form-input required form-input" type="text" id="land" value="Belgique">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label class="form-label" for="date">Facturé le :*</label>
+                            <input class="js-form-input required form-input" type="date" id="date">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="date_pay">Payé le :</label>
+                            <input class="js-form-input form-input" type="date" id="date_pay">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="js-form-container form-container">
+                    <div class="js-products-container form-products"></div>
+
+                    <button class="button u-mar-t-40 js-products-add">
+                        <span class="button__label">Ajouter un produit</span>
                         <svg class="button__icon" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.9286 7.07143H7.28571C7.16738 7.07143 7.07143 7.16738 7.07143 7.28571V10.9286C7.07143 11.5203 6.59169 12 6 12C5.40831 12 4.92857 11.5203 4.92857 10.9286V7.28571C4.92857 7.16738 4.83262 7.07143 4.71429 7.07143H1.07143C0.479736 7.07143 0 6.59169 0 6C0 5.40831 0.479736 4.92857 1.07143 4.92857H4.71429C4.83262 4.92857 4.92857 4.83262 4.92857 4.71429V1.07143C4.92857 0.479736 5.40831 -1.19209e-07 6 -1.19209e-07C6.59169 -1.19209e-07 7.07143 0.479736 7.07143 1.07143V4.71429C7.07143 4.83262 7.16738 4.92857 7.28571 4.92857H10.9286C11.5203 4.92857 12 5.40831 12 6C12 6.59169 11.5203 7.07143 10.9286 7.07143Z"/>
                         </svg>
-                    </a>
+                    </button>
                 </div>
 
-                <div class="listing">
-                    <ul class="listing__head">
-                        <li class="listing__item _small">N°</li>
-                        <li class="listing__item _medium">Client</li>
-                        <li class="listing__item _big">Services</li>
-                        <li class="listing__item _small _right">Heure(s)</li>
-                        <li class="listing__item _small _right">HTVA</li>
-                        <li class="listing__item _small _right">TVAC</li>
-                        <li class="listing__item _small _right">TVA</li>
-                    </ul>
-
-                    <div class="js-listing"></div>
+                <div class="form-navigation">
+                    <button class="button _border js-form-back is-disable">
+                        <span class="button__label">Retour</span>
+                    </button>
+                    <button class="button js-form-next _right">
+                        <span class="button__label">Suivant</span>
+                        <svg class="button__icon" viewBox="0 0 12 9" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.7803 3.98624L7.86067 0.211353C7.56707 -0.0713855 7.09219 -0.0703333 6.79995 0.21382C6.50774 0.497937 6.50887 0.957482 6.80246 1.24026L9.43368 3.77419H0.750021C0.335784 3.77419 0 4.09914 0 4.5C0 4.90086 0.335784 5.22581 0.750021 5.22581H9.43365L6.8025 7.75974C6.5089 8.04252 6.50778 8.50206 6.79999 8.78618C7.09223 9.07037 7.56714 9.07135 7.8607 8.78865L11.7797 5.01445C12.0735 4.73073 12.0732 4.26901 11.7803 3.98624Z"/>
+                        </svg>
+                    </button>
                 </div>
+
             </div>
         </section>
     </main>
