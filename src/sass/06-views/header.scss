@@ -22,7 +22,7 @@
             width: 11.5rem;
 
             rect{
-                fill: $c-main;
+                fill: $c-primary;
             }
         }
     }
@@ -56,6 +56,13 @@
         cursor: pointer;
         padding: 1rem 0;
 
+        @include after{
+            width: 1rem;
+            height: 1rem;
+            margin: 2px 0 0 1rem;
+            @include background-image("arrow.svg", contain, center);
+        }
+
         @include event{
             color: darken($c-primary, 15%);
         }
@@ -86,6 +93,8 @@
             font-weight: 700;
             color: $c-primary;
             @include transition;
+            display: flex;
+            align-items: center;
 
             @include event{
                 color: darken($c-primary, 15%);
@@ -102,6 +111,23 @@
             svg{
                 margin-right: 1rem;
             }
+
+            @include before{
+                width: 1rem;
+                height: 1rem;
+                margin: 2px 1rem 0 0;
+                @include background-image("cross-blue.svg", contain, center);
+                transform: rotate(45deg);
+            }
+            
+            &:last-child{
+                &:before{
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    transform: rotate(0);
+                    background-image: url($p_svg + "list.svg");
+                }
+            }
         }
     }
 
@@ -117,6 +143,7 @@
 
         @include event{
             background-color: darken($c-primary, 10%);
+            color: darken(white, 10%);
         }
     }
 }
@@ -130,6 +157,10 @@
 
     .header__link{
         color: white;
+
+        @include after{
+            background-image: url($p_svg + "arrow-white.svg");
+        }
 
         svg{
             fill: white;
@@ -152,7 +183,7 @@
         color: $c-primary;
 
         @include event{
-            background-color: darken(white, 5%);
+            color: darken($c-primary, 10%);
         }
     }
 }

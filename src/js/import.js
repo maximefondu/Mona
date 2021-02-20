@@ -4,6 +4,7 @@ import exportData from "./components/export-data"
 import importData from "./components/import-data"
 import listingSale from "./components/listing-sale"
 import admin from "./components/admin"
+import home from "./components/home"
 export default {
 
     init(){
@@ -13,5 +14,6 @@ export default {
         new importData()
         new listingSale()
         new admin()
+        new home()
     }
 }
