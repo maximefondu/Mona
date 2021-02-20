@@ -1,4 +1,4 @@
-export default class formProductsBuy {
+export default class formProductsPurchase {
 
     constructor() {
         this.$container  = document.querySelector(".js-products-container");

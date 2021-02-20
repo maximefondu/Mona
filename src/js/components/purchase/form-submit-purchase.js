@@ -1,4 +1,4 @@
-export default class formSubmitBuy {
+export default class formSubmitPurchase {
 
     constructor() {
         this.object = {}
@@ -73,7 +73,7 @@ export default class formSubmitBuy {
     }
 
     redirection(){
-        document.location.href="/listing-buy.html"
+        document.location.href="/listing-purchase.html"
     }
 
 

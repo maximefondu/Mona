@@ -1,9 +1,12 @@
-import formNavigation from "./components/form-navigation"
 import formServicesSale from "./components/sale/form-services-sale"
-import formProductsBuy from "./components/buy/form-products-buy"
+import listingSale from "./components/sale/listing-sale"
+
+import formProductsPurchase from "./components/purchase/form-products-purchase"
+import listingPurchase from "./components/purchase/listing-purchase"
+
+import formNavigation from "./components/form-navigation"
 import exportData from "./components/export-data"
 import importData from "./components/import-data"
-import listingSale from "./components/listing-sale"
 import admin from "./components/admin"
 import home from "./components/home"
 export default {
@@ -16,6 +19,7 @@ export default {
         new listingSale()
         new admin()
         new home()
-        new formProductsBuy()
+        new formProductsPurchase()
+        new listingPurchase()
     }
 }

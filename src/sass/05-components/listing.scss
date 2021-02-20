@@ -1,6 +1,20 @@
 .listing{
     margin-top: 5rem;
 
+    &__main{
+        @include wrap;
+    }
+
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__content{
+        margin-top: 5rem;
+    }
+
     &__head{
         display: flex;
         margin-bottom: 3rem;
@@ -54,6 +68,10 @@
             width: 35%;
         }
 
+        &._extra-big{
+            width: 55%;
+        }
+
         &._right{
             text-align: right;
         }
@@ -61,6 +79,11 @@
         &._oneElement{
             ._title{
                 color: $c-main;
+            }
+
+            ._parent{
+                display: block;
+                margin: 0;
             }
         }
     }

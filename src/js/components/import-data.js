@@ -37,6 +37,7 @@ export default class exportData {
     cleanLocalStorage(){
         localStorage.removeItem("bills")
         localStorage.removeItem("settings")
+        localStorage.removeItem("purchase")
     }
 
     success(){

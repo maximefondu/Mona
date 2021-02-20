@@ -1,6 +1,6 @@
 import formValdiation from './form-validation'
 import formSubmitSale from './sale/form-submit-sale'
-import formSubmitBuy from './buy/form-submit-buy'
+import formSubmitPurchase from './purchase/form-submit-purchase'
 
 export default class formNavigation {
 
@@ -62,7 +62,7 @@ export default class formNavigation {
             if( this.getAttribute(document.body, "type") === "sale" ) {
                 new formSubmitSale
             }else{
-                new formSubmitBuy
+                new formSubmitPurchase
             }
         }
     }
