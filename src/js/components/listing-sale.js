@@ -3,7 +3,6 @@ import downloadPdf from "./download-pdf"
 export default class listingSale {
 
     constructor() {
-        this.monthsActive = []
         this.$listing = document.querySelector(".js-listing")
 
         if(this.$listing){
@@ -12,6 +11,11 @@ export default class listingSale {
     }
 
     init(){
+        this.setListing()
+    }
+
+    setListing(){
+        this.monthsActive = []
         this.getMonthActive()
         this.setContainer()
         this.setItems()
@@ -40,15 +44,17 @@ export default class listingSale {
     setItems(){
         this.getData().forEach( (data, index) =>{
             const parent = document.querySelector(`.js-listing-container-${this.getMonth(data)}`)
-
             const container     = this.setElement("div", ["listing__list"])
             const numberBill    = this.setElement("div", ["listing__item", "_small"], data.countBill)
             const client        = this.setElement("div", ["listing__item", "_medium"], this.getClient(data))
             const download      = this.setElement("button", ["listing__download"])
-            const remove        = this.setElement("button", ["listing__remove"])
+
+            if(this.lastItem(index)){
+                this.remove = this.setElement("button", ["listing__remove"])
+                this.removeItem(this.remove, index)
+            }
 
             this.downloadPdf(download, index)
-            this.removeItem(remove, index)
 
             container.append(numberBill)
             container.append(client)
@@ -58,7 +64,11 @@ export default class listingSale {
             container.append( this.setTVAC(data) )
             container.append( this.setTVA(data) )
             container.append( download )
-            container.append( remove )
+
+            if(this.lastItem(index)){
+                container.append( this.remove )
+            }
+
             parent.append(container)
         })
     }
@@ -154,7 +164,7 @@ export default class listingSale {
     removeItem(button, index){
         button.addEventListener("click", ()=>{
 
-            //modal
+            //Create modal
             const parent = this.setElement("div", ["modal"])
             const text   = this.setElement("p", ["modal__text"], "Êtes-vous sûr de vouloir supprimer cette facture")
             const div   = this.setElement("div", ["modal__buttons"])
@@ -172,23 +182,24 @@ export default class listingSale {
 
             yes.addEventListener('click', ()=>{
                 parent.remove()
-                
-                //remove line front
-                button.parentNode.remove()
 
-                //remove data
+                //Remove data
                 const data = this.getData()
                 data.splice(index, 1)
                 localStorage.setItem("bills", JSON.stringify(data))
 
-                //number bill
+                //Set number bill
                 const settings = JSON.parse(localStorage.getItem("settings"))
                 settings.count = settings.count - 1
                 localStorage.setItem("settings", JSON.stringify(settings))
+
+                //Clean DOM and regenerate
+                this.$listing.innerHTML = ""
+                this.setListing()
             })
         })
     }
-
+x
     /* Utils */
 
     createService(container, data, value, symbol){
@@ -259,6 +270,14 @@ export default class listingSale {
 
     addUppercaseFirstLetter(value){
         return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+
+    lastItem(index){
+        if(this.getData().length === index + 1){
+            return true
+        }else{
+            return false
+        }
     }
 }
 

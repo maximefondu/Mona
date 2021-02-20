@@ -1,0 +1,28 @@
+.card-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 7rem;
+    background-color: white;
+    border-radius: 1.4rem;
+    box-shadow: 0 0 2.2rem rgba(black, .2);
+    min-width: 26rem;
+
+    &__title{
+        font-size: 2.4rem;
+        line-height: 1;
+        color: $c-primary;
+        margin: 0 0 4rem 0;
+    }
+
+    &__number{
+        font-size: 4.2rem;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    &__htva{
+        color: $c-grey-medium;
+        margin: 0 0 0 0;
+    }
+}

@@ -51,9 +51,7 @@ export default class admin {
 
     setLocalStorage(){
         const settings = localStorage.getItem("settings") ? JSON.parse( localStorage.getItem("settings") ) : {}
-
         const data = Object.assign(settings, this.object)
-
         localStorage.setItem("settings", JSON.stringify(data))
     }
 

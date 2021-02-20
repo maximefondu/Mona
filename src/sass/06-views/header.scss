@@ -1,11 +1,19 @@
 .header{
-    padding: 4rem 0;
+    padding: 2rem 0;
+    border-bottom: 1.5px solid $c-grey-medium;
+    position: relative;
+    z-index: 100;
 
     &__main{
         @include wrap;
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &__content{
+        display: flex;
+        align-items: center;
     }
 
     &__logo{
@@ -20,17 +28,17 @@
     }
 
     &__item{
+        position: relative;
+
         @include not-last-child{
             margin-right: 4rem;
         }
 
-        &:last-child{
-            .header__link{
-                color: $c-secondary;
+        @include event{
 
-                @include event{
-                    color: darken($c-secondary, 15%);
-                }
+            .header__submenu{
+                opacity: 1;
+                pointer-events: auto;
             }
         }
     }
@@ -39,9 +47,104 @@
         font-weight: 700;
         @include transition;
         color: $c-primary;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 1rem 0;
 
         @include event{
             color: darken($c-primary, 15%);
+        }
+
+        svg{
+            fill: $c-primary;
+            flex-shrink: 0;
+            width: 1rem;
+            margin-left: 1rem;
+        }
+    }
+
+    &__submenu{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 18rem;
+        background-color: white;
+        padding: .2rem 1.2rem;
+        border-radius: 8px;
+        opacity: 0;
+        pointer-events: none;
+        @include transition;
+        box-shadow: 0 0 2.4rem rgba(black, .2);
+
+        a{
+            padding: 1rem 0;
+            font-weight: 700;
+            color: $c-primary;
+            @include transition;
+
+            @include event{
+                color: darken($c-primary, 15%);
+
+                svg{
+                    fill: darken($c-primary, 15%);
+                }
+            }
+
+            @include not-last-child{
+                border-bottom: 1px solid $c-grey-medium;
+            }
+
+            svg{
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &__account{
+        padding: 1rem 2.2rem;
+        background-color: $c-primary;
+        color: white;
+        border-radius: 3.4rem;
+        font-weight: 700;
+        margin-left: 4.2rem;
+        @include transition;
+        cursor: pointer;
+
+        @include event{
+            background-color: darken($c-primary, 10%);
+        }
+    }
+}
+
+/* _white */
+.header._white{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .header__link{
+        color: white;
+
+        svg{
+            fill: white;
+        }
+    }
+
+    .header__logo{
+
+        svg{
+            fill: white;
+        }
+    }
+
+    .header__account{
+        background-color: white;
+        color: $c-primary;
+
+        @include event{
+            background-color: darken(white, 5%);
         }
     }
 }

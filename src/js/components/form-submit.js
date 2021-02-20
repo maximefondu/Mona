@@ -101,17 +101,18 @@ export default class formSubmit {
                 bill.count = 1
                 bill.year = this.date.getFullYear()
 
-                localStorage.setItem("settings", JSON.stringify({
+                localStorage.setItem("settings", JSON.stringify(Object.assign(bill, {
                     "count" : bill.count,
-                    "year": bill.year
-                }))
+                    "year": this.date.getFullYear()
+                })))
+
             }else{
                 bill.count++
 
-                localStorage.setItem("settings", JSON.stringify({
+                localStorage.setItem("settings", JSON.stringify(Object.assign(bill, {
                     "count" : bill.count,
                     "year": this.date.getFullYear()
-                }))
+                })))
             }
         }
 

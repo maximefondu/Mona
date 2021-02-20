@@ -1,10 +1,24 @@
 .home{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    @include after{
+        @include background-image("home-bg.svg", cover, bottom, $p_svg);
+        width: 100%;
+        height: 65%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -5;
+    }
 
     &__main{
         @include wrap($container-wrap-small);
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
+        height: 100%;
     }
 
     &__list{
@@ -37,5 +51,9 @@
         @include event{
             box-shadow: 0 0 2.4rem rgba(black, .05);
         }
+    }
+
+    .card-home:last-child{
+        margin-top: 16rem;
     }
 }
