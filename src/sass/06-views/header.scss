@@ -20,6 +20,10 @@
 
         svg{
             width: 11.5rem;
+
+            rect{
+                fill: $c-main;
+            }
         }
     }
 
@@ -136,6 +140,10 @@
 
         svg{
             fill: white;
+
+            rect{
+                fill: white;
+            }
         }
     }
 
