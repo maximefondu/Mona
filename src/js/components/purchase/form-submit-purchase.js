@@ -73,7 +73,7 @@ export default class formSubmitPurchase {
     }
 
     redirection(){
-        document.location.href="/listing-purchase.html"
+        document.location.href="./listing-purchase.html"
     }
 
 

@@ -21,7 +21,7 @@
         svg{
             width: 11.5rem;
 
-            rect{
+            path:last-child{
                 fill: $c-primary;
             }
         }
@@ -172,7 +172,7 @@
         svg{
             fill: white;
 
-            rect{
+            path:last-child{
                 fill: white;
             }
         }

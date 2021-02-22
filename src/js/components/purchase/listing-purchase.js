@@ -3,7 +3,7 @@ export default class listingPurchase {
     constructor() {
         this.$listing = document.querySelector(".js-listing-purchase")
 
-        if(this.$listing){
+        if(this.$listing && this.getData()){
             this.init()
         }
     }

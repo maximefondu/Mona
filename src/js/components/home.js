@@ -3,9 +3,13 @@ export default class admin {
     constructor() {
         this.date = new Date()
         this.$currentMonth     = document.querySelector(".js-current-month")
-        this.$sumMonth         = document.querySelector(".js-month-sum")
         this.$currentYear      = document.querySelector(".js-current-year")
-        this.$sumYear          = document.querySelector(".js-year-sum")
+
+        this.$sumMonthBills    = document.querySelector(".js-month-sum-bills")
+        this.$sumYearBills     = document.querySelector(".js-year-sum-bills")
+
+        this.$sumMonthPurchase = document.querySelector(".js-month-sum-purchase")
+        this.$sumYearPurchase = document.querySelector(".js-year-sum-purchase")
 
         if(this.$currentMonth){
             this.init()
@@ -14,14 +18,22 @@ export default class admin {
 
     init(){
         this.$currentMonth.textContent = this.getCurrentMonth()
-        this.$sumMonth.textContent = this.sum(false)
         this.$currentYear.textContent = this.getCurrentYear()
-        this.$sumYear.textContent = this.sum(true)
+
+        this.$sumMonthBills.textContent = this.sumBills(false)
+        this.$sumYearBills.textContent = this.sumBills(true)
+        this.$sumMonthPurchase.textContent = this.sumPurchase(false)
+        this.$sumYearPurchase.textContent = this.sumPurchase(true)
     }
 
-    getData(){
+    getBills(){
         const data = JSON.parse( localStorage.getItem("bills") )
-        return data ? data : false
+        return data ? data : []
+    }
+
+    getPurchase(){
+        const data = JSON.parse( localStorage.getItem("purchase") )
+        return data ? data : []
     }
 
     getCurrentMonth(){
@@ -32,10 +44,11 @@ export default class admin {
         return this.date.getFullYear()
     }
 
-    sum(all){
+    sumBills(all){
         let sum = 0
         let sumMonth = 0
-        this.getData().forEach( data =>{
+
+        this.getBills().forEach( data =>{
 
             const value = parseFloat(data.htva)
 
@@ -52,6 +65,30 @@ export default class admin {
             return `${sumMonth.toFixed(2)}€`
         }
 
+    }
+
+    sumPurchase(all){
+        let sum = 0
+        let sumMonth = 0
+
+        this.getPurchase().forEach( data =>{
+
+            const value = parseFloat(data.htva)
+            let date = new Date(data.date)
+            date = date.toLocaleString('default', { month: 'long' })
+
+            if(date === this.getCurrentMonth()){
+                sumMonth += value
+            }
+
+            sum += value
+        })
+
+        if(all){
+            return `${sum.toFixed(2)}€`
+        }else{
+            return `${sumMonth.toFixed(2)}€`
+        }
     }
 }
 

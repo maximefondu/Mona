@@ -28,6 +28,10 @@
         justify-content: space-between;
         margin-bottom: 18px;
 
+        div:last-child{
+            margin-right: 28px;
+        }
+
         p{
             margin-bottom: .3px;
 
@@ -49,6 +53,7 @@
         font-size: 18px;
         line-height: 1;
         font-weight: 700;
+        margin-left: -1px;
     }
 
     ._globalData {
@@ -91,9 +96,6 @@
         }
     }
 
-    ._services{
-    }
-
     ._service{
 
         @include not-last-child{
@@ -107,10 +109,6 @@
         }
     }
 
-    ._details{
-
-    }
-
     ._detail{
         color: $c-grey;
         margin-left: 1px;
@@ -120,14 +118,75 @@
         }
     }
 
+    ._sum{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 4px;
+        margin-top: 20px;
+
+        ._container{
+            margin-left: 1rem;
+            font-size: 3px;
+            font-weight: 300;
+            color: rgba($c-main, .6);
+            text-align: right;
+
+            div{
+                position: relative;
+                margin-right: 13px;
+                @include not-last-child{
+                    margin-bottom: 2px;
+                }
+
+                &:first-child{
+                    @include after{
+                        content: 'HTVA';
+                        position: absolute;
+                        top: 60%;
+                        right: -2px;
+                        transform: translate(100%, -50%);
+                    }
+                }
+
+                &:nth-child(2){
+                    @include after{
+                        content: 'TVA 21%';
+                        position: absolute;
+                        top: 60%;
+                        right: -2px;
+                        transform: translate(100%, -50%);
+                    }
+                }
+
+                &:last-child{
+                    @include after{
+                        content: 'TVAC';
+                        position: absolute;
+                        top: 60%;
+                        right: -2px;
+                        transform: translate(100%, -50%);
+                    }
+                }
+            }
+
+            strong{
+                font-size: 5px;
+                font-weight: 700;
+                color: rgba($c-main, 1);
+
+            }
+        }
+    }
+
     ._footer{
+        background-color: $c-grey-light;
         width: 210px;
         display: flex;
         justify-content: space-between;
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: 15px;
+        padding: 9px;
 
         p{
             font-size: 3.5px;

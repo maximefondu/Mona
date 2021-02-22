@@ -25,6 +25,7 @@ export default class downloadPdf {
         this.setGlobalData()
         this.setHeadListing()
         this.setListing()
+        this.setCum()
         this.setFooter()
         this.initPdf()
     }
@@ -124,15 +125,42 @@ export default class downloadPdf {
         grid.append(tvac)
     }
 
+    setCum(){
+        const parent    = this.setElement("div", ["_sum"])
+        const sum       = this.setElement("div", false, "Total :")
+        const container = this.setElement("div", ["_container"])
+        const htva      = this.setElement("div", false, `<strong>${this.getData().htva}€</strong>`)
+        const tva      = this.setElement("div", false, `<strong>${this.getData().tva}€</strong>`)
+        const tvac      = this.setElement("div", false, `<strong>${this.getData().tvac}€</strong>`)
+        parent.append(sum, container)
+        container.append(htva, tva, tvac)
+        this.content.append(parent)
+    }
+
     setFooter() {
         const parent = this.setElement("div", ["_footer"])
-        const email = this.setElement("p", false, `Email : ${this.getSettings().email}`)
-        const tel = this.setElement("p", false, `Tél. : ${this.getSettings().tel}`)
-        const iban = this.setElement("p", false, `IBAN : ${this.getSettings().iban}`)
 
-        parent.append(email)
-        parent.append(tel)
-        parent.append(iban)
+        const ibanContainer = this.setElement("div", false)
+        const ibanLabel     = this.setElement("p", false, "<strong>IBAN</strong>")
+        const ibanValue     = this.setElement("p", false, this.getSettings().iban)
+        ibanContainer.append(ibanLabel, ibanValue)
+
+        const tvaContainer  = this.setElement("div", false)
+        const tvaLabel      = this.setElement("p", false, "<strong>Numéro de TVA</strong>")
+        const tvaValue      = this.setElement("p", false, this.getSettings().number_tva)
+        tvaContainer.append(tvaLabel, tvaValue)
+
+        const emailContainer  = this.setElement("div", false)
+        const emailLabel      = this.setElement("p", false, "<strong>E-mail</strong>")
+        const emailValue      = this.setElement("p", false, this.getSettings().email)
+        emailContainer.append(emailLabel, emailValue)
+
+        const telContainer  = this.setElement("div", false)
+        const telLabel      = this.setElement("p", false, "<strong>Téléphone</strong>")
+        const telValue      = this.setElement("p", false, this.getSettings().tel)
+        telContainer.append(telLabel, telValue)
+
+        parent.append(ibanContainer, tvaContainer, emailContainer, telContainer)
         this.content.append(parent)
     }
 

@@ -149,7 +149,7 @@ export default class formSubmitSale {
     }
 
     redirection(){
-        document.location.href="/listing-sale.html"
+        document.location.href="./listing-sale.html"
     }
 
     /* Get */
