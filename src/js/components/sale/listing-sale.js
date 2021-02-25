@@ -43,9 +43,9 @@ export default class listingSale {
 
     setItems(){
         this.getData().forEach( (data, index) =>{
-            const parent = document.querySelector(`.js-listing-container-${this.getMonth(data)}`)
+            const parent        = document.querySelector(`.js-listing-container-${this.getMonth(data)}`)
             const container     = this.setElement("div", ["listing__list"])
-            const numberBill    = this.setElement("div", ["listing__item", "_small"], data.countBill)
+            const numberBill    = this.setElement("div", ["listing__item", "_very-small"], data.countBill)
             const client        = this.setElement("div", ["listing__item", "_medium"], this.getClient(data))
             const download      = this.setElement("button", ["listing__download"])
 
@@ -56,14 +56,7 @@ export default class listingSale {
 
             this.downloadPdf(download, index)
 
-            container.append(numberBill)
-            container.append(client)
-            container.append( this.setServices(data) )
-            container.append( this.setHours(data) )
-            container.append( this.setHTVA(data) )
-            container.append( this.setTVAC(data) )
-            container.append( this.setTVA(data) )
-            container.append( download )
+            container.append(numberBill, client, this.setServices(data), this.setHours(data), this.setHTVA(data), this.setTVAC(data), this.setTVA(data), this.setPaid(data, index), download)
 
             if(this.lastItem(index)){
                 container.append( this.remove )
@@ -92,7 +85,7 @@ export default class listingSale {
     setHours(data){
         const value     = "hours"
         const symbol    = "h"
-        const container = this.setElement("div", ["listing__item", "_small", "_right"])
+        const container = this.setElement("div", ["listing__item", "_very-small", "_right"])
         const hours     = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(hours)
 
@@ -106,7 +99,7 @@ export default class listingSale {
     setHTVA(data){
         const value     = "htva"
         const symbol    = "€"
-        const container = this.setElement("div", ["listing__item", "_small", "_right"])
+        const container = this.setElement("div", ["listing__item", "_very-small", "_right"])
         const htva      = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(htva)
 
@@ -120,7 +113,7 @@ export default class listingSale {
     setTVAC(data){
         const value     = "tvac"
         const symbol    = "€"
-        const container = this.setElement("div", ["listing__item", "_small", "_right"])
+        const container = this.setElement("div", ["listing__item", "_very-small", "_right"])
         const tvac      = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(tvac)
 
@@ -134,7 +127,7 @@ export default class listingSale {
     setTVA(data){
         const value     = "tva"
         const symbol    = "€"
-        const container = this.setElement("div", ["listing__item", "_small", "_right"])
+        const container = this.setElement("div", ["listing__item", "_very-small", "_right"])
         const tva       = this.setElement("div", [], `${data[value]}${symbol}`)
         container.append(tva)
 
@@ -199,8 +192,61 @@ export default class listingSale {
             })
         })
     }
-x
+
+    setPaid(data, index){
+        const paid = this.isPaid(data) ? "_paid" : "_not-paid"
+        const parent = this.setElement("div", ["listing__item", "_very-small", "_right"])
+        const button = this.setElement("button", [paid, "paid"])
+        this.setDate(button, data.date_pay)
+        parent.append(button)
+
+        button.addEventListener('click', ()=>{
+            //Create modal
+            const parent    = this.setElement("div", ["modal"])
+            const back      = this.setElement("div", ["modal__back"])
+            const input     = this.setElement("input", ["form-input"])
+            const submit    = this.setElement("button", ["button"])
+            const submitLabel    = this.setElement("span", ["button__label"], "Valider")
+            input.setAttribute("type", "date")
+            parent.append(input, submit)
+            submit.append(submitLabel)
+            document.body.append(back)
+            document.body.append(parent)
+
+            back.addEventListener('click', ()=>{
+                parent.remove()
+                back.remove()
+            })
+
+            //Set date
+            submit.addEventListener('click', ()=>{
+                const storage = this.getData()
+                storage[index].date_pay = input.value
+                localStorage.setItem("bills", JSON.stringify( storage ))
+
+                button.classList.remove("_not-paid")
+                button.classList.add("_paid")
+                this.setDate(button, input.value)
+
+                parent.remove()
+                back.remove()
+            })
+        })
+
+        return parent
+    }
+
+
     /* Utils */
+
+    isPaid(data){
+        return data.date_pay ? true : false
+    }
+
+    setDate(item, value){
+        const date = new Date(value)
+        item.setAttribute("data-date", `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`)
+    }
 
     createService(container, data, value, symbol){
         const parent = this.setElement("ul", ["_parent"])
