@@ -1,4 +1,5 @@
 import {jsPDF} from "jspdf";
+import timeFormat from "hh-mm-ss";
 
 export default class downloadPdf {
 
@@ -18,6 +19,8 @@ export default class downloadPdf {
         this.pdf = new jsPDF(
             this.options
         )
+
+        this.deadline()
 
         this.setContent()
         this.setHeaderFrom()
@@ -60,16 +63,14 @@ export default class downloadPdf {
 
     setHeaderTo() {
         const to = this.setElement("div", false)
+        const title = this.setElement("p", ["_light"], "Facturé à")
         const name = this.setElement("p", ["_bold"], this.getCompany())
         const address = this.setElement("p", false, this.getData().address)
         const city = this.setElement("p", false, this.getData().zip_code + " " + this.getData().city)
         const land = this.setElement("p", false, this.getData().land)
         const tva = this.setElement("p", false, this.getData().tva_number)
 
-        to.append(name)
-        to.append(address)
-        to.append(city)
-        to.append(land)
+        to.append(title, name, address, city, land)
 
         if (this.getTva()) {
             to.append(tva)
@@ -82,13 +83,14 @@ export default class downloadPdf {
     setGlobalData() {
         const title = this.setElement("p", ["_title"], "Facture")
         const content = this.setElement("div", ["_globalData"])
-        const date = this.setElement("p", false, `Date : <strong>${this.getDate()}</strong>`)
-        const count = this.setElement("p", false, `Numéro de facture : <strong>${this.getData().countBill}</strong>`)
+        const contentLeft = this.setElement("div", false)
+        const date = this.setElement("p", false, `Date de facturation :<strong>${this.getDate()}</strong>`)
+        const count = this.setElement("p", false, `N° : <strong>${this.getData().countBill}</strong>`)
+        const deadline = this.setElement("p", false, `Échéance : <strong>${this.deadline()}</strong>`)
 
-        this.content.append(title)
-        this.content.append(content)
-        content.append(date)
-        content.append(count)
+        contentLeft.append(count, date)
+        content.append(contentLeft, deadline)
+        this.content.append(title, content)
     }
 
     setHeadListing() {
@@ -98,11 +100,8 @@ export default class downloadPdf {
         const htva = this.setElement("div", ["_item", "_2-12", "_bold"], "HTVA")
         const tvac = this.setElement("div", ["_item", "_2-12", "_bold"], "TVAC")
 
+        grid.append(description, hours, htva, tvac)
         this.content.append(grid)
-        grid.append(description)
-        grid.append(hours)
-        grid.append(htva)
-        grid.append(tvac)
     }
 
     setListing() {
@@ -127,13 +126,15 @@ export default class downloadPdf {
 
     setCum(){
         const parent    = this.setElement("div", ["_sum"])
-        const sum       = this.setElement("div", false, "Total :")
+        const sum       = this.setElement("div", ["_title"], "Total :")
         const container = this.setElement("div", ["_container"])
+        const numbers = this.setElement("div", ["_numbers"])
         const htva      = this.setElement("div", false, `<strong>${this.getData().htva}€</strong>`)
         const tva      = this.setElement("div", false, `<strong>${this.getData().tva}€</strong>`)
         const tvac      = this.setElement("div", false, `<strong>${this.getData().tvac}€</strong>`)
-        parent.append(sum, container)
-        container.append(htva, tva, tvac)
+        numbers.append(htva, tva, tvac)
+        container.append(sum, numbers)
+        parent.append(container)
         this.content.append(parent)
     }
 
@@ -146,7 +147,7 @@ export default class downloadPdf {
         ibanContainer.append(ibanLabel, ibanValue)
 
         const tvaContainer  = this.setElement("div", false)
-        const tvaLabel      = this.setElement("p", false, "<strong>Numéro de TVA</strong>")
+        const tvaLabel      = this.setElement("p", false, "<strong>Numéro d'entreprise</strong>")
         const tvaValue      = this.setElement("p", false, this.getSettings().number_tva)
         tvaContainer.append(tvaLabel, tvaValue)
 
@@ -164,6 +165,13 @@ export default class downloadPdf {
         this.content.append(parent)
     }
 
+
+    deadline(){
+        const dateCurrent = new Date()
+        const deadline =  new Date( dateCurrent.setDate(dateCurrent.getDate() + 7) )
+
+        return `${deadline.getDate()} ${deadline.toLocaleString('default', { month: 'long' })} ${deadline.getFullYear()}`
+    }
 
     setElement(type, classes, value) {
         const item = document.createElement(type)
@@ -186,12 +194,22 @@ export default class downloadPdf {
 
         this.getData().services.forEach(service => {
             const parentService = this.setElement("div", ["_service"])
-            const title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
+            let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
+
+            if(symbol == "h"){
+                title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
+            }
+
             const parentDetails = this.setElement("div", ["_details"])
 
             service.details.forEach(detail => {
                 if (detail[key]) {
-                    const item = this.setElement("p", ["_detail"], `${detail[key]}${symbol}`)
+                    let item = this.setElement("p", ["_detail"], `${detail[key]}${symbol}`)
+
+                    if(symbol == "h"){
+                        item = this.setElement("p", ["_detail"], `${this.setFormatHours(detail)}`)
+                    }
+                    
                     parentDetails.append(item)
                 }
             })
@@ -203,6 +221,18 @@ export default class downloadPdf {
         })
     }
 
+
+    setFormatHours(data){
+        const time = data["hours"]
+        const secondes = time * 3600
+        const value = timeFormat.fromS(secondes, 'hh:mm').split(":").join("h")
+
+        if(value.indexOf("0") == 0){
+            return value.substring(1)
+        }
+        return value
+    }
+    
 
     /* Function get */
 

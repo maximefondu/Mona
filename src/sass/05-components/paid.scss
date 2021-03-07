@@ -9,6 +9,8 @@
     position: relative;
     cursor: pointer;
     @include transition;
+    margin-left: auto;
+    display: flex;
 
     &._paid{
         @include background-image("check.svg", contain, center, $p_svg);
@@ -17,9 +19,9 @@
             @include after{
                 content: attr(data-date);
                 position: absolute;
-                top: 0;
+                top: 50%;
                 left: 0;
-                transform: translate(2rem, -50%);
+                transform: translate(2.2rem, -55%);
                 white-space: nowrap;
                 background-color: white;
                 font-family: $f-main;

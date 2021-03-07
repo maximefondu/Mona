@@ -1,4 +1,5 @@
 import downloadPdf from "./../download-pdf"
+import timeFormat from "hh-mm-ss"
 
 export default class listingSale {
 
@@ -33,7 +34,7 @@ export default class listingSale {
     }
 
     setContainer(){
-        this.monthsActive.reverse().forEach( month => {
+        this.monthsActive.forEach( month => {
             const container = this.setElement("div", [`listing__container`, `js-listing-container-${month}`])
             const title = this.setElement("h2", ["title", "_small", "_uppercase", "_grey"], this.addUppercaseFirstLetter(month))
             container.append(title)
@@ -43,6 +44,7 @@ export default class listingSale {
 
     setItems(){
         this.getData().forEach( (data, index) =>{
+            index = this.reverseIndex(index)
             const parent        = document.querySelector(`.js-listing-container-${this.getMonth(data)}`)
             const container     = this.setElement("div", ["listing__list"])
             const numberBill    = this.setElement("div", ["listing__item", "_very-small"], data.countBill)
@@ -83,14 +85,14 @@ export default class listingSale {
     }
 
     setHours(data){
-        const value     = "hours"
         const symbol    = "h"
         const container = this.setElement("div", ["listing__item", "_very-small", "_right"])
-        const hours     = this.setElement("div", [], `${data[value]}${symbol}`)
+        const hours     = this.setElement("div", [], `${this.setFormatHours(data)}`)
+
         container.append(hours)
 
         if(this.haveOneElement(data)){
-            this.createService(container, data, value, symbol)
+            this.createService(container, data, "", symbol)
         }
 
         return container
@@ -194,46 +196,61 @@ export default class listingSale {
     }
 
     setPaid(data, index){
+
         const paid = this.isPaid(data) ? "_paid" : "_not-paid"
         const parent = this.setElement("div", ["listing__item", "_very-small", "_right"])
         const button = this.setElement("button", [paid, "paid"])
-        this.setDate(button, data.date_pay)
         parent.append(button)
 
-        button.addEventListener('click', ()=>{
-            //Create modal
-            const parent    = this.setElement("div", ["modal"])
-            const back      = this.setElement("div", ["modal__back"])
-            const input     = this.setElement("input", ["form-input"])
-            const submit    = this.setElement("button", ["button"])
-            const submitLabel    = this.setElement("span", ["button__label"], "Valider")
-            input.setAttribute("type", "date")
-            parent.append(input, submit)
-            submit.append(submitLabel)
-            document.body.append(back)
-            document.body.append(parent)
+        if( !this.isPaid(data) ){
+            button.addEventListener('click', ()=>{
+                //Create modal
+                const parent    = this.setElement("div", ["modal"])
+                const back      = this.setElement("div", ["modal__back"])
+                const input     = this.setElement("input", ["form-input"])
+                const submit    = this.setElement("button", ["button"])
+                const submitLabel    = this.setElement("span", ["button__label"], "Valider")
+                input.setAttribute("type", "date")
+                parent.append(input, submit)
+                submit.append(submitLabel)
+                document.body.append(back)
+                document.body.append(parent)
 
-            back.addEventListener('click', ()=>{
-                parent.remove()
-                back.remove()
+                back.addEventListener('click', ()=>{
+                    parent.remove()
+                    back.remove()
+                })
+
+                //Set date
+                submit.addEventListener('click', ()=>{
+                    const storage = this.getData()
+                    storage[index].payed = input.value
+                    localStorage.setItem("bills", JSON.stringify( storage ))
+
+                    button.classList.remove("_not-paid")
+                    button.classList.add("_paid")
+                    this.setDate(button, input.value)
+
+                    parent.remove()
+                    back.remove()
+                })
             })
-
-            //Set date
-            submit.addEventListener('click', ()=>{
-                const storage = this.getData()
-                storage[index].date_pay = input.value
-                localStorage.setItem("bills", JSON.stringify( storage ))
-
-                button.classList.remove("_not-paid")
-                button.classList.add("_paid")
-                this.setDate(button, input.value)
-
-                parent.remove()
-                back.remove()
-            })
-        })
+        }else{
+            this.setDate(button, data.payed)
+        }
 
         return parent
+    }
+
+    setFormatHours(data){
+        const time = data["hours"]
+        const secondes = time * 3600
+        const value = timeFormat.fromS(secondes, 'hh:mm').split(":").join("h")
+
+        if(value.indexOf("0") == 0){
+            return value.substring(1)
+        }
+        return value
     }
 
 
@@ -252,7 +269,11 @@ export default class listingSale {
         const parent = this.setElement("ul", ["_parent"])
         data.services.forEach( service => {
             const list = this.setElement("li", ["_list"])
-            const item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
+            let item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
+
+            if(symbol == "h"){
+                item = this.setElement("div", ["_title"], `${this.setFormatHours(service)}` )
+            }
 
             list.append(item)
             parent.append(list)
@@ -264,7 +285,12 @@ export default class listingSale {
 
     createDetail(parent, service, value, symbol){
         service.details.forEach( detail => {
-            const child = this.setElement("div", ["_item"], `${detail[value]}${symbol}`)
+            let child = this.setElement("div", ["_item"], `${detail[value]}${symbol}`)
+
+            if(symbol == "h"){
+                child = this.setElement("div", ["_item"], `${this.setFormatHours(detail)}`)
+            }
+
             parent.append( child )
         })
     }
@@ -287,7 +313,7 @@ export default class listingSale {
 
     getData(){
         const data = JSON.parse( localStorage.getItem("bills") )
-        return data ? data : false
+        return data ? data.reverse() : false
     }
 
     getClient(data){
@@ -324,6 +350,10 @@ export default class listingSale {
         }else{
             return false
         }
+    }
+
+    reverseIndex(index){
+        return this.getData().length - index -1
     }
 }
 

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "hh-mm-ss": "^1.2.0",
     "html-pdf": "^2.2.0",
     "jspdf": "^2.3.0",
     "parcel-bundler": "^1.12.4",
