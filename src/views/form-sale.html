@@ -61,13 +61,17 @@
 
                 <div class="form-head">
                     <ul class="form-head__list">
-                        <li class=" js-form-head form-head__item is-active">
+                        <li data-index="0" class="js-form-head form-head__item is-active">
                             <span class="form-head__number">1</span>
                             <span class="form-head__label">Données de contact</span>
                         </li>
-                        <li class=" js-form-head form-head__item">
+                        <li data-index="1" class="js-form-head form-head__item">
                             <span class="form-head__number">2</span>
-                            <span class="form-head__label">Produits et services</span>
+                            <span class="form-head__label">Services</span>
+                        </li>
+                        <li data-index="2" class="js-form-head form-head__item">
+                            <span class="form-head__number">3</span>
+                            <span class="form-head__label">Services externes</span>
                         </li>
                     </ul>
 
@@ -128,11 +132,22 @@
                     </button>
                 </div>
 
+                <div class="js-form-container form-container">
+                    <div class="js-form-service-external-container"></div>
+
+                    <button class="button u-mar-t-40 js-service-external-add">
+                        <span class="button__label">Ajouter un service externe</span>
+                        <svg class="button__icon" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9286 7.07143H7.28571C7.16738 7.07143 7.07143 7.16738 7.07143 7.28571V10.9286C7.07143 11.5203 6.59169 12 6 12C5.40831 12 4.92857 11.5203 4.92857 10.9286V7.28571C4.92857 7.16738 4.83262 7.07143 4.71429 7.07143H1.07143C0.479736 7.07143 0 6.59169 0 6C0 5.40831 0.479736 4.92857 1.07143 4.92857H4.71429C4.83262 4.92857 4.92857 4.83262 4.92857 4.71429V1.07143C4.92857 0.479736 5.40831 -1.19209e-07 6 -1.19209e-07C6.59169 -1.19209e-07 7.07143 0.479736 7.07143 1.07143V4.71429C7.07143 4.83262 7.16738 4.92857 7.28571 4.92857H10.9286C11.5203 4.92857 12 5.40831 12 6C12 6.59169 11.5203 7.07143 10.9286 7.07143Z"/>
+                        </svg>
+                    </button>
+                </div>
+
                 <div class="form-navigation">
                     <button class="button _border js-form-back is-disable">
                         <span class="button__label">Retour</span>
                     </button>
-                    <button class="button js-form-next _right">
+                    <button class="button js-form-next _right" data-index="0">
                         <span class="button__label">Suivant</span>
                         <svg class="button__icon" viewBox="0 0 12 9" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.7803 3.98624L7.86067 0.211353C7.56707 -0.0713855 7.09219 -0.0703333 6.79995 0.21382C6.50774 0.497937 6.50887 0.957482 6.80246 1.24026L9.43368 3.77419H0.750021C0.335784 3.77419 0 4.09914 0 4.5C0 4.90086 0.335784 5.22581 0.750021 5.22581H9.43365L6.8025 7.75974C6.5089 8.04252 6.50778 8.50206 6.79999 8.78618C7.09223 9.07037 7.56714 9.07135 7.8607 8.78865L11.7797 5.01445C12.0735 4.73073 12.0732 4.26901 11.7803 3.98624Z"/>

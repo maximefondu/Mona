@@ -117,6 +117,11 @@ export default class downloadPdf {
         this.setServices(htva, "htva", "€")
         this.setServices(tvac, "tvac", "€")
 
+        //services external
+        this.setServicesExternal(description, "name", "")
+        this.setServicesExternal(htva, "htva", "€")
+        this.setServicesExternal(tvac, "tvac", "€")
+
         this.content.append(grid)
         grid.append(description)
         grid.append(hours)
@@ -164,7 +169,6 @@ export default class downloadPdf {
         parent.append(ibanContainer, tvaContainer, emailContainer, telContainer)
         this.content.append(parent)
     }
-
 
     deadline(){
         const dateCurrent = new Date()
@@ -221,6 +225,22 @@ export default class downloadPdf {
         })
     }
 
+    setServicesExternal(parent, key, symbol) {
+        const container = this.setElement("div", ["_services"])
+
+        this.getData().servicesExternal.forEach(service => {
+            const parentService = this.setElement("div", ["_service"])
+            let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
+
+            if(symbol == "h"){
+                title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
+            }
+
+            container.append(parentService)
+            parentService.append(title)
+            parent.append(container)
+        })
+    }
 
     setFormatHours(data){
         const time = data["hours"]

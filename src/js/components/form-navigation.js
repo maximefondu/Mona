@@ -19,10 +19,13 @@ export default class formNavigation {
     init(){
 
         this.$buttonNext.addEventListener('click', ()=>{
-            if(this.currentStep === 0) {
-                this.nextStep()
-            }else{
+
+            this.currentStep = parseInt(this.$buttonNext.getAttribute("data-index"))
+
+            if(this.currentStep >= this.$formContainer.length - 1){
                 this.validation()
+            }else{
+                this.nextStep()
             }
         })
 
@@ -38,6 +41,7 @@ export default class formNavigation {
 
         if(succes){
             this.currentStep++
+            this.$buttonNext.setAttribute("data-index", this.currentStep)
 
             this.toggleNextStep()
             this.toggleButtonBack()
@@ -49,10 +53,12 @@ export default class formNavigation {
     prevStep(){
         this.currentStep--
 
+        this.$buttonNext.setAttribute("data-index", this.currentStep)
+
         this.toggleNextStep()
         this.toggleButtonBack()
         this.toggleTabs()
-        this.toggleTabs()
+        this.toggleLabelButton()
     }
 
     validation(){
@@ -98,10 +104,11 @@ export default class formNavigation {
 
     toggleLabelButton(){
         const label = this.$buttonNext.querySelector(".button__label")
-        if(this.currentStep === 0){
-            label.textContent = "Suivant"
-        }else{
+
+        if(this.currentStep >= this.$formContainer.length - 1){
             label.textContent = "Valider"
+        }else{
+            label.textContent = "Suivant"
         }
     }
 

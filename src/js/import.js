@@ -1,4 +1,5 @@
 import formServicesSale from "./components/sale/form-services-sale"
+import formServicesExternalSale from "./components/sale/form-services-external-sale"
 import listingSale from "./components/sale/listing-sale"
 
 import formProductsPurchase from "./components/purchase/form-products-purchase"
@@ -14,6 +15,7 @@ export default {
     init(){
         new formNavigation()
         new formServicesSale()
+        new formServicesExternalSale()
         new exportData()
         new importData()
         new listingSale()

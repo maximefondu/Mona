@@ -5,11 +5,16 @@ export default class formSubmitSale {
         this.$formContainer = document.querySelectorAll(".js-form-container")
         this.$inputsContact = this.$formContainer[0].querySelectorAll(".js-form-input")
         this.$services = document.querySelectorAll(".js-form-service")
+        this.$servicesExternal = document.querySelectorAll(".js-form-service-external")
+        this.externalsServiceCum = {}
+        this.serviceSumHours = 0
         this.date = new Date()
 
         this.getContactData()
         this.getServiceData()
         this.getDetailsData()
+        this.getServiceExternData()
+        this.setPriceSum()
         this.setDate()
         this.setNumberBill()
         this.setLocalStorage()
@@ -46,7 +51,7 @@ export default class formSubmitSale {
             hoursServices += hours
         })
 
-        this.setPriceCum(hoursServices)
+        this.serviceSumHours = hoursServices
 
         this.object["services"] = services
     }
@@ -76,6 +81,39 @@ export default class formSubmitSale {
 
             this.object.services[index]["details"] = details
         })
+    }
+
+    getServiceExternData(){
+        let products = []
+        let priceSumHtva = 0
+        let priceSumTvac = 0
+        let priceSumTva = 0
+
+        this.$servicesExternal.forEach( (service, index) =>{
+            let product = {}
+            const $inputs   = service.querySelectorAll(".js-form-input")
+            const name      = $inputs[0].value
+            const price     = parseFloat($inputs[1].value)
+            const priceTVAC = price * 1.21
+            const TVA = priceTVAC - price
+
+            product["name"] = name
+            product["htva"] = price.toFixed(2)
+            product["tvac"] = priceTVAC.toFixed(2)
+            product["tva"] = TVA.toFixed(2)
+
+            products.push(product)
+
+            priceSumHtva += price
+            priceSumTvac += priceTVAC
+            priceSumTva += TVA
+        })
+
+        this.externalsServiceCum["htva"] = priceSumHtva
+        this.externalsServiceCum["tvac"] = priceSumTvac
+        this.externalsServiceCum["tva"] = priceSumTva
+
+        this.object["servicesExternal"] = products
     }
 
     setDate(){
@@ -141,10 +179,16 @@ export default class formSubmitSale {
         localStorage.setItem('bills', JSON.stringify(data));
     }
 
-    setPriceCum(hours){
-        this.object["htva"] = this.setPriceHTVA(hours).toFixed(2)
-        this.object["tvac"] = this.setPriceTVAC(hours).toFixed(2)
-        this.object["tva"] = this.setTVA(hours).toFixed(2)
+    setPriceSum(){
+        const hours = this.serviceSumHours
+
+        const htva = this.setPriceHTVA(hours) + this.externalsServiceCum["htva"]
+        const tvac = this.setPriceTVAC(hours) + this.externalsServiceCum["tvac"]
+        const tva = this.setTVA(hours) + this.externalsServiceCum["tva"]
+
+        this.object["htva"] = htva.toFixed(2)
+        this.object["tvac"] = tvac.toFixed(2)
+        this.object["tva"] = tva.toFixed(2)
         this.object["hours"] = parseFloat(hours)
     }
 

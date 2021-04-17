@@ -81,6 +81,9 @@ export default class listingSale {
 
         this.createService(container, data, "name", "")
 
+        // create service external
+        this.createServiceExternal(container, data, "name", "")
+
         return container
     }
 
@@ -107,6 +110,7 @@ export default class listingSale {
 
         if(this.haveOneElement(data)) {
             this.createService(container, data, value, symbol)
+            this.createServiceExternal(container, data, value, symbol)
         }
 
         return container
@@ -121,6 +125,7 @@ export default class listingSale {
 
         if(this.haveOneElement(data)) {
             this.createService(container, data, value, symbol)
+            this.createServiceExternal(container, data, value, symbol)
         }
 
         return container
@@ -135,6 +140,7 @@ export default class listingSale {
 
         if(this.haveOneElement(data)) {
             this.createService(container, data, value, symbol)
+            this.createServiceExternal(container, data, value, symbol)
         }
 
         return container
@@ -179,7 +185,7 @@ export default class listingSale {
                 parent.remove()
 
                 //Remove data
-                const data = this.getData()
+                const data = this.getData().reverse()
                 data.splice(index, 1)
                 localStorage.setItem("bills", JSON.stringify(data))
 
@@ -223,8 +229,9 @@ export default class listingSale {
 
                 //Set date
                 submit.addEventListener('click', ()=>{
-                    const storage = this.getData()
+                    const storage = this.getData().reverse()
                     storage[index].payed = input.value
+
                     localStorage.setItem("bills", JSON.stringify( storage ))
 
                     button.classList.remove("_not-paid")
@@ -257,7 +264,7 @@ export default class listingSale {
     /* Utils */
 
     isPaid(data){
-        return data.date_pay ? true : false
+        return data.payed ? true : false
     }
 
     setDate(item, value){
@@ -283,6 +290,18 @@ export default class listingSale {
         container.append(parent)
     }
 
+    createServiceExternal(container, data, value, symbol){
+        const parent = this.setElement("ul", ["_parent"])
+        data.servicesExternal.forEach( service => {
+            const list = this.setElement("li", ["_list"])
+            let item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
+
+            list.append(item)
+            parent.append(list)
+        })
+        container.append(parent)
+    }
+
     createDetail(parent, service, value, symbol){
         service.details.forEach( detail => {
             let child = this.setElement("div", ["_item"], `${detail[value]}${symbol}`)
@@ -304,7 +323,15 @@ export default class listingSale {
             }
         })
 
+        if(data.servicesExternal.length > 1){
+            visible = true
+        }
+
         if(data.services.length > 1){
+            visible = true
+        }
+
+        if(data.servicesExternal.length >= 1 && data.services.length >= 1){
             visible = true
         }
 

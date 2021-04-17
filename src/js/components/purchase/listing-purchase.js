@@ -199,7 +199,7 @@ export default class listingPurchase {
                 parent.remove()
 
                 //Remove data
-                const data = this.getData()
+                const data = this.getData().reverse()
                 data.splice(index, 1)
                 localStorage.setItem("purchase", JSON.stringify(data))
 
@@ -211,14 +211,14 @@ export default class listingPurchase {
     }
 
     isPaid(data){
-        return data.date_pay ? true : false
+        return data.payed ? true : false
     }
 
     setPaid(data, index){
         const paid = this.isPaid(data) ? "_paid" : "_not-paid"
         const parent = this.setElement("div", ["listing__item", "_small", "_right"])
         const button = this.setElement("button", [paid, "paid"])
-        this.setDate(button, data.date_pay)
+        this.setDate(button, data.payed)
         parent.append(button)
 
         if( !this.isPaid(data) ) {
@@ -242,8 +242,8 @@ export default class listingPurchase {
 
                 //Set date
                 submit.addEventListener('click', () => {
-                    const storage = this.getData()
-                    storage[index].date_pay = input.value
+                    const storage = this.getData().reverse()
+                    storage[index].payed = input.value
                     localStorage.setItem("purchase", JSON.stringify(storage))
 
                     button.classList.remove("_not-paid")

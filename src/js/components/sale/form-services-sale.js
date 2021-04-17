@@ -11,8 +11,8 @@ export default class formServicesSale {
     }
 
     init(){
-        this.createService(this.serviceCount, true)
-        this.details(this.serviceCount)
+        // this.createService(this.serviceCount, true)
+        // this.details(this.serviceCount)
 
         this.services()
     }
@@ -23,6 +23,7 @@ export default class formServicesSale {
     services(){
         this.$serviceAdd.addEventListener('click', ()=>{
             this.serviceCount++
+
             this.createService(this.serviceCount, false)
             this.removeService(this.serviceCount)
             this.details(this.serviceCount)

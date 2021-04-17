@@ -6,7 +6,6 @@ export default class formValdiation {
     }
 
     init(currentStep){
-
         this.inputs = this.$formContainer[currentStep].querySelectorAll(".js-form-input.required")
 
         this.inputs.forEach( input =>{
