@@ -196,50 +196,54 @@ export default class downloadPdf {
     setServices(parent, key, symbol) {
         const container = this.setElement("div", ["_services"])
 
-        this.getData().services.forEach(service => {
-            const parentService = this.setElement("div", ["_service"])
-            let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
+        if(this.getData().services){
+            this.getData().services.forEach(service => {
+                const parentService = this.setElement("div", ["_service"])
+                let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
 
-            if(symbol == "h"){
-                title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
-            }
-
-            const parentDetails = this.setElement("div", ["_details"])
-
-            service.details.forEach(detail => {
-                if (detail[key]) {
-                    let item = this.setElement("p", ["_detail"], `${detail[key]}${symbol}`)
-
-                    if(symbol == "h"){
-                        item = this.setElement("p", ["_detail"], `${this.setFormatHours(detail)}`)
-                    }
-                    
-                    parentDetails.append(item)
+                if(symbol == "h"){
+                    title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
                 }
-            })
 
-            container.append(parentService)
-            parentService.append(title)
-            parentService.append(parentDetails)
-            parent.append(container)
-        })
+                const parentDetails = this.setElement("div", ["_details"])
+
+                service.details.forEach(detail => {
+                    if (detail[key]) {
+                        let item = this.setElement("p", ["_detail"], `${detail[key]}${symbol}`)
+
+                        if(symbol == "h"){
+                            item = this.setElement("p", ["_detail"], `${this.setFormatHours(detail)}`)
+                        }
+
+                        parentDetails.append(item)
+                    }
+                })
+
+                container.append(parentService)
+                parentService.append(title)
+                parentService.append(parentDetails)
+                parent.append(container)
+            })
+        }
     }
 
     setServicesExternal(parent, key, symbol) {
         const container = this.setElement("div", ["_services"])
 
-        this.getData().servicesExternal.forEach(service => {
-            const parentService = this.setElement("div", ["_service"])
-            let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
+        if(this.getData().servicesExternal){
+            this.getData().servicesExternal.forEach(service => {
+                const parentService = this.setElement("div", ["_service"])
+                let title = this.setElement("p", ["_title"],`${service[key]}${symbol}`)
 
-            if(symbol == "h"){
-                title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
-            }
+                if(symbol == "h"){
+                    title = this.setElement("p", ["_title"], `${this.setFormatHours(service)}`)
+                }
 
-            container.append(parentService)
-            parentService.append(title)
-            parent.append(container)
-        })
+                container.append(parentService)
+                parentService.append(title)
+                parent.append(container)
+            })
+        }
     }
 
     setFormatHours(data){

@@ -57,7 +57,7 @@ export default class formSubmitPurchase {
     }
 
     setTVAC(price){
-        return price * 1.21
+        return price * parseFloat( this.object["tva_rate"] )
     }
 
     setTVA(price){

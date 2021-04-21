@@ -291,15 +291,17 @@ export default class listingSale {
     }
 
     createServiceExternal(container, data, value, symbol){
-        const parent = this.setElement("ul", ["_parent"])
-        data.servicesExternal.forEach( service => {
-            const list = this.setElement("li", ["_list"])
-            let item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
+        if(data.servicesExternal){
+            const parent = this.setElement("ul", ["_parent"])
+            data.servicesExternal.forEach( service => {
+                const list = this.setElement("li", ["_list"])
+                let item = this.setElement("div", ["_title"], `${service[value]}${symbol}` )
 
-            list.append(item)
-            parent.append(list)
-        })
-        container.append(parent)
+                list.append(item)
+                parent.append(list)
+            })
+            container.append(parent)
+        }
     }
 
     createDetail(parent, service, value, symbol){
@@ -323,16 +325,20 @@ export default class listingSale {
             }
         })
 
-        if(data.servicesExternal.length > 1){
-            visible = true
+        if(data.servicesExternal){
+            if(data.servicesExternal.length > 1){
+                visible = true
+            }
         }
 
         if(data.services.length > 1){
             visible = true
         }
 
-        if(data.servicesExternal.length >= 1 && data.services.length >= 1){
-            visible = true
+        if(data.servicesExternal){
+            if(data.servicesExternal.length >= 1 && data.services.length >= 1){
+                visible = true
+            }
         }
 
         return visible
