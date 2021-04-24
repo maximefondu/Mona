@@ -5,6 +5,9 @@ import listingSale from "./components/sale/listing-sale"
 import formProductsPurchase from "./components/purchase/form-products-purchase"
 import listingPurchase from "./components/purchase/listing-purchase"
 
+import formSubmitClient from "./components/clients/form-submit-client"
+import selectClient from "./components/clients/select-client"
+
 import formNavigation from "./components/form-navigation"
 import exportData from "./components/export-data"
 import importData from "./components/import-data"
@@ -23,5 +26,7 @@ export default {
         new home()
         new formProductsPurchase()
         new listingPurchase()
+        new formSubmitClient()
+        new selectClient()
     }
 }

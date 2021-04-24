@@ -1,0 +1,38 @@
+.form-select{
+    position: relative;
+
+    select{
+        padding: 1.6rem 2rem;
+        font-family: $f-main;
+        width: 100%;
+        border: 1px solid rgba($c-grey, .6);
+        border-radius: .5rem;
+        outline: none;
+        font-size: 1.4rem;
+        cursor: pointer;
+
+        &:focus{
+            border: 1.5px solid $c-primary;
+        }
+    }
+
+    @include after{
+        position: absolute;
+        top: 50%;
+        right: .1rem;
+        width: 2rem;
+        height: 2rem;
+        background-color: white;
+        transform: translateY(-50%);
+    }
+
+    @include before{
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        transform: translateY(-50%);
+        @include background-image("arrow.svg", contain, center, $p_svg);
+    }
+}

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <header class="header _white">
+    <header class="header">
     <div class="header__main">
         <a class="header__logo" href="/index.html">
             <svg viewBox="0 0 728 187">
@@ -67,7 +67,63 @@
 </header>
 
     <main>
-      form client
+      <section class="form">
+          <div class="form__main">
+              <h1 class="title">Encoder votre <strong>client</strong></h1>
+
+              <div class="js-form-container form-container is-active">
+                  <div class="form-row">
+                      <div class="form-field">
+                          <label class="form-label" for="company">Société*</label>
+                          <input class="js-form-input required form-input" type="text" id="company" placeholder="ex. Onie">
+                      </div>
+                      <div class="form-field">
+                          <label class="form-label" for="tva_number">Numéro de TVA</label>
+                          <input class="js-form-input form-input" type="text" id="tva_number" placeholder="ex. 04546.363.363">
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-field">
+                          <label class="form-label" for="name">Nom</label>
+                          <input class="js-form-input form-input" type="text" id="name" placeholder="ex. Liss">
+                      </div>
+                      <div class="form-field">
+                          <label class="form-label" for="forename">Prénom</label>
+                          <input class="js-form-input form-input" type="text" id="forename" placeholder="ex. Benjamin">
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-field">
+                          <label class="form-label" for="address">Addresse*</label>
+                          <input class="js-form-input required form-input" type="text" id="address" placeholder="ex. Rue des paquerettes, 10">
+                      </div>
+                      <div class="form-field">
+                          <label class="form-label" for="zip_code">Code postal*</label>
+                          <input class="js-form-input required form-input" type="number" id="zip_code" placeholder="ex. 5000">
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-field">
+                          <label class="form-label" for="city">Ville*</label>
+                          <input class="js-form-input required form-input" type="text" id="city" placeholder="ex. Namur">
+                      </div>
+                      <div class="form-field">
+                          <label class="form-label" for="land">Pays*</label>
+                          <input class="js-form-input required form-input" type="text" id="land" value="Belgique">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-navigation">
+                  <button class="button _right js-button-submit-client">
+                      <span class="button__label">Valider</span>
+                      <svg class="button__icon" viewBox="0 0 12 9" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11.7803 3.98624L7.86067 0.211353C7.56707 -0.0713855 7.09219 -0.0703333 6.79995 0.21382C6.50774 0.497937 6.50887 0.957482 6.80246 1.24026L9.43368 3.77419H0.750021C0.335784 3.77419 0 4.09914 0 4.5C0 4.90086 0.335784 5.22581 0.750021 5.22581H9.43365L6.8025 7.75974C6.5089 8.04252 6.50778 8.50206 6.79999 8.78618C7.09223 9.07037 7.56714 9.07135 7.8607 8.78865L11.7797 5.01445C12.0735 4.73073 12.0732 4.26901 11.7803 3.98624Z"/>
+                      </svg>
+                  </button>
+              </div>
+          </div>
+      </section>
     </main>
 
     <script src="./../js/main.js"></script>

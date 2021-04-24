@@ -29,10 +29,12 @@ export default class exportData {
         this.bills = JSON.parse(localStorage.getItem("bills"))
         this.settings = JSON.parse(localStorage.getItem("settings"))
         this.purchase = JSON.parse(localStorage.getItem("purchase"))
+        this.clients = JSON.parse(localStorage.getItem("clients"))
 
         this.data['bills'] = this.bills
         this.data['settings'] = this.settings
         this.data['purchase'] = this.purchase
+        this.data['clients'] = this.clients
         this.data = JSON.stringify(this.data)
     }
 
