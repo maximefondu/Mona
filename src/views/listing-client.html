@@ -67,7 +67,32 @@
 </header>
 
     <main>
-        listing client
+        <section class="listing">
+            <div class="listing__main">
+                <div class="listing__top">
+                    <h1 class="title">Liste des <strong>clients</strong></h1>
+                    <a href="/form-client.html" class="button">
+                        <span class="button__label">Ajouter un client</span>
+                        <svg class="button__icon" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.9286 7.07143H7.28571C7.16738 7.07143 7.07143 7.16738 7.07143 7.28571V10.9286C7.07143 11.5203 6.59169 12 6 12C5.40831 12 4.92857 11.5203 4.92857 10.9286V7.28571C4.92857 7.16738 4.83262 7.07143 4.71429 7.07143H1.07143C0.479736 7.07143 0 6.59169 0 6C0 5.40831 0.479736 4.92857 1.07143 4.92857H4.71429C4.83262 4.92857 4.92857 4.83262 4.92857 4.71429V1.07143C4.92857 0.479736 5.40831 -1.19209e-07 6 -1.19209e-07C6.59169 -1.19209e-07 7.07143 0.479736 7.07143 1.07143V4.71429C7.07143 4.83262 7.16738 4.92857 7.28571 4.92857H10.9286C11.5203 4.92857 12 5.40831 12 6C12 6.59169 11.5203 7.07143 10.9286 7.07143Z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="listing__content">
+                    <ul class="listing__head">
+                        <li class="listing__item _small _medium">Société</li>
+                        <li class="listing__item _small _extramedium">N° de TVA</li>
+                        <li class="listing__item _small _extramedium">Nom</li>
+                        <li class="listing__item _small _small">HTVA</li>
+                        <li class="listing__item _small _small">TVAC</li>
+                        <li class="listing__item _small _small">TVA</li>
+                    </ul>
+
+                    <div class="js-listing-client"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="./../js/main.js"></script>

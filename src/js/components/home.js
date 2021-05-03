@@ -74,7 +74,7 @@ export default class admin {
         this.getPurchase().forEach( data =>{
 
             const value = parseFloat(data.htva)
-            let date = new Date(data.date)
+            let date = new Date(data.payed)
             date = date.toLocaleString('default', { month: 'long' })
 
             if(date === this.getCurrentMonth()){

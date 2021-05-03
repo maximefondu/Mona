@@ -25,6 +25,22 @@
         }
     }
 
+    &__sum{
+        display: flex;
+        margin-bottom: 3rem;
+        position: relative;
+
+        .title{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .listing__item{
+            color: $c-grey;
+        }
+    }
+
     &__container{
 
         @include not-last-child{
@@ -66,6 +82,10 @@
 
         &._medium{
             width: 15%;
+        }
+
+        &._extramedium{
+            width: 25%;
         }
 
         &._big{

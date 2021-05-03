@@ -7,6 +7,7 @@ import listingPurchase from "./components/purchase/listing-purchase"
 
 import formSubmitClient from "./components/clients/form-submit-client"
 import selectClient from "./components/clients/select-client"
+import listingClient from "./components/clients/listing-client"
 
 import formNavigation from "./components/form-navigation"
 import exportData from "./components/export-data"
@@ -28,5 +29,6 @@ export default {
         new listingPurchase()
         new formSubmitClient()
         new selectClient()
+        new listingClient()
     }
 }

@@ -36,8 +36,32 @@ export default class listingSale {
     setContainer(){
         this.monthsActive.forEach( month => {
             const container = this.setElement("div", [`listing__container`, `js-listing-container-${month}`])
+            const head = this.setElement("div", [`listing__sum`])
             const title = this.setElement("h2", ["title", "_small", "_uppercase", "_grey"], this.addUppercaseFirstLetter(month))
-            container.append(title)
+
+            const data = this.getData()
+            .filter( (item)=>{
+                return item.date.month === month
+            })
+            .reduce( (value, item)=>{
+                return {
+                    "htva": (parseFloat(value.htva) + parseFloat(item.htva)).toFixed(2),
+                    "tvac": (parseFloat(value.tvac) + parseFloat(item.tvac)).toFixed(2),
+                    "tva": (parseFloat(value.tva) + parseFloat(item.tva)).toFixed(2),
+                }
+            })
+
+            const empty1 = this.setElement("div", ["listing__item", "_very-small"], "")
+            const empty2 = this.setElement("div", ["listing__item", "_medium"], "")
+            const empty3 = this.setElement("div", ["listing__item", "_big"], "")
+            const empty4 = this.setElement("div", ["listing__item", "_small"], "")
+            const htvaSum = this.setElement("div", ["listing__item", "_very-small", "_left"], `${data.htva}€`)
+            const tvacSum = this.setElement("div", ["listing__item", "_very-small", "_left"], `${data.tvac}€`)
+            const tvaSum = this.setElement("div", ["listing__item", "_very-small", "_left"], `${data.tva}€`)
+
+
+            head.append(title, empty1, empty2, empty3, empty4, htvaSum, tvacSum, tvaSum)
+            container.append(head)
             this.$listing.append(container)
         })
     }
